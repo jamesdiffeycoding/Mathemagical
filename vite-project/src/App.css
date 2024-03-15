@@ -15,10 +15,22 @@ body {
 }
 
 .point {
-  width: 10px;
-  height: 10px;
-  background-color: brown;
+  width: 1px;
+  height: 1px;
+  background-color: white;
   border-radius: 50%;
   position: absolute;
 }
 
+.graphone {
+  background-color: orange;
+}
+.graphtwo {
+  background-color: red;
+}
+.graphthree {
+  background-color: brown;
+}
+.graphfour{
+  background-color:white;
+}
