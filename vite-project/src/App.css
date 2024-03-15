@@ -1,0 +1,24 @@
+body { 
+  margin: 0;
+}
+.container {
+  background-color: grey;
+  color: white;
+  display: flex; /* Added */
+  justify-content: center;
+  align-items: center; /* Changed from align-content to align-items */
+  text-align: center;
+  border: 10px solid black;
+  height: 100vh;
+  width: 100vw;
+
+}
+
+.point {
+  width: 10px;
+  height: 10px;
+  background-color: brown;
+  border-radius: 50%;
+  position: absolute;
+}
+
