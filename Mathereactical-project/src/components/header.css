@@ -1,0 +1,97 @@
+/* Header-grid */
+.header-grid {
+display: grid;
+grid-template-columns: 1fr;
+text-align: center;
+align-items: center; /* centers elements vertically in 3 column layout*/
+padding: auto;
+width: 100%;
+}
+
+.header-grid-item {
+padding-bottom: 1rem;
+}
+
+
+.codystar-light {
+font-family: "Codystar", sans-serif;
+font-weight: 300;
+font-style: normal;
+}
+
+.codystar-regular {
+font-family: "Codystar", sans-serif;
+font-weight: 400;
+font-style: normal;
+}
+
+div.project-name {
+font-size: 35px;
+color: #85e4ff;
+padding-inline: 3rem;
+}
+div.subtitle {
+color: #ffffff;
+font-size: 30px;
+padding-inline: 3rem;
+}
+
+img.logo {
+height: 6em;
+margin: 0;
+/* padding: 1.5em; */
+will-change: filter;
+transition: filter 300ms;
+}
+
+img.logo:hover {
+filter: drop-shadow(0 0 2em #646cffaa);
+}
+img.logo.react:hover {
+filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+
+
+
+@keyframes logo-spin {
+from {
+transform: rotate(0deg);
+}
+to {
+transform: rotate(360deg);
+}
+}
+
+
+/* MEDIA QUERIES  */
+@media (prefers-reduced-motion: no-preference) {
+a:nth-of-type(1) .logo {
+animation: logo-spin infinite 20s linear;
+}
+}
+
+@media (min-width: 1500px) {
+.header-grid {
+grid-template-columns: 2fr 1fr 2fr
+}
+h1 {
+margin: 0;
+}
+div.react-logo {
+grid-column: 2/3;
+}
+div.project-name {
+font-size: 25px;
+grid-column: 1/2;
+grid-row: 1/2;
+line-height: 1;
+
+}
+
+div.subtitle {
+font-size: 40px;
+grid-column: 3/4;
+grid-row: 1/2;
+}
+}
