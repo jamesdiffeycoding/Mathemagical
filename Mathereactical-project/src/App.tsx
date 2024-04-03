@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import Graph from './components/Graph.jsx'
+import GraphContainer from './components/GraphContainer.jsx'
 import Footer from './components/Footer.jsx'
 import Header from './components/Header.jsx'
 
@@ -12,8 +12,7 @@ function App() {
       <div>    
         <Header></Header>    
         <hr></hr>
-
-        <Graph></Graph>
+        <GraphContainer></GraphContainer>
         <hr></hr>
         <Footer></Footer>
         <hr></hr>

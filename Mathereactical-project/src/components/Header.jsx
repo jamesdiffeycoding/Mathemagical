@@ -12,7 +12,7 @@ export default function Header() {
         </div>
         {/* 2 */}
         <div className="header-grid-item project-name codystar-regular">
-          <h1>MatheMagical</h1>
+          <h1 className="header-h1">MatheMagical</h1>
         </div>
         {/* 3 */}
         <div className="header-grid-item subtitle codystar-light">

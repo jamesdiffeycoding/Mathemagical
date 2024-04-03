@@ -1,0 +1,21 @@
+/* graph-container-grid */
+.graph-container-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+    align-items: center; /* centers elements vertically in 3 column layout*/
+    padding: auto;
+    padding: 3rem;
+    background-color: #242424;
+    grid-gap: 1rem;
+}
+
+
+
+/* MEDIA QUERIES  */
+
+@media (min-width: 1000px) {
+    .graph-container-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

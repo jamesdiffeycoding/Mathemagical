@@ -1,0 +1,20 @@
+.graph-container-item {
+    height: 1000px;
+    padding: 2rem;
+    background-color: rgb(0, 28, 51);
+    border-radius: 10px;
+    border: 3px solid rgb(62, 149, 255);
+}
+
+
+.graph-container-item .graph-description{
+    color: grey;
+
+}
+
+.graph-canvas {
+    height: 600px;
+    background-color: rgb(0, 36, 66);
+    border-radius: 10px;
+    margin: 1rem;
+}
