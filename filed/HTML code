@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Z(θ)=e^θi + e^πθi</title>
+  <style>
+    body { 
+      background-color: black;
+      text-align: center;
+    }
+    canvas {
+      background-color: black;
+      display: block;
+      margin: 0 auto;
+    }
+    h1 {
+      color: white;
+    }
+    .slider-container {
+      margin-top: 20px;
+    }
+    .slider-value {
+      color: white;
+      display: inline-block;
+      margin-left: 10px;
+    }
+    label {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Z(&theta;) = e<sup>&theta;i</sup> + e<sup>&pi;&theta;i</sup></h1>
+  <canvas id="complexCanvas" width="500" height="500"></canvas>
+  <div class="slider-container">
+    <label for="thetaLimitSlider">Theta Limit (how much you want the graph to continue changing):</label>
+    <input type="range" id="thetaLimitSlider" min="10" max="1000" value="1000">
+    <span id="thetaLimitValue" class="slider-value">1000</span>
+  </div>
+  <div class="slider-container">
+    <label for="thetaIncrementSlider">Theta Increment (how 'dotted' or 'smooth' you want the line):</label>
+    <input type="range" id="thetaIncrementSlider" min="0.001" max="0.1" step="0.001" value="0.01">
+    <span id="thetaIncrementValue" class="slider-value">0.01</span>
+    <div class="slider-container">
+      <label for="renderSpeedSlider">Render Speed (limited by CPU):</label>
+      <input type="range" id="renderSpeedSlider" min="1" max="1000" value="50">
+      <span id="renderSpeedValue" class="slider-value">5</span>
+    </div>
+  </div>
+  <div class="slider-container">
+    <label for="lineThicknessSlider">Line Thickness:</label>
+    <input type="range" id="lineThicknessSlider" min="1" max="5" value="1">
+    <span id="lineThicknessValue" class="slider-value">1</span>
+  </div>
+  <div class="slider-container">
+    <label for="graphColorPicker">Graph Color:</label>
+    <input type="color" id="graphColorPicker" value="#ffffff">
+  </div>
+
+  <script>
+    const canvas = document.getElementById('complexCanvas');
+    const ctx = canvas.getContext('2d');
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    let theta = 0;
+    let thetaLimit = 1000; // Initial value for thetaLimit
+    let lineThickness = 1;
+    let thetaIncrement = 0.01;
+    let graphColor = '#ffffff'; // Initial color for the graph
+    let renderSpeed = 50; // Initial render speed
+
+    function drawNextFrame() {
+      // Calculate Z(theta)
+      const realPart = Math.cos(theta) + Math.cos(Math.PI * theta);
+      const imagPart = Math.sin(theta) + Math.sin(Math.PI * theta);
+      const x = centerX + realPart * 80;
+      const y = centerY + imagPart * 80;
+
+      // Draw the point
+      ctx.beginPath();
+      ctx.arc(x, y, lineThickness, 0, 2 * Math.PI);
+      ctx.fillStyle = graphColor;
+      ctx.fill();
+
+      theta += thetaIncrement; // Increment theta for next frame
+
+      if (theta <= thetaLimit * Math.PI) {
+        // Schedule the next frame with a delay based on render speed
+        setTimeout(drawNextFrame, 1000 / renderSpeed); // Adjust the delay based on render speed
+      }
+    }
+
+    drawNextFrame();
+
+    // Add event listener for the sliders and color picker
+    const thetaLimitSlider = document.getElementById('thetaLimitSlider');
+    const thetaLimitValue = document.getElementById('thetaLimitValue');
+    const lineThicknessSlider = document.getElementById('lineThicknessSlider');
+    const lineThicknessValue = document.getElementById('lineThicknessValue');
+    const thetaIncrementSlider = document.getElementById('thetaIncrementSlider');
+    const thetaIncrementValue = document.getElementById('thetaIncrementValue');
+    const graphColorPicker = document.getElementById('graphColorPicker');
+    const renderSpeedSlider = document.getElementById('renderSpeedSlider');
+    const renderSpeedValue = document.getElementById('renderSpeedValue');
+
+    thetaLimitSlider.addEventListener('input', function() {
+      thetaLimit = parseInt(this.value);
+      thetaLimitValue.textContent = this.value;
+      restartAnimation();
+    });
+
+    lineThicknessSlider.addEventListener('input', function() {
+      lineThickness = parseInt(this.value);
+      lineThicknessValue.textContent = this.value;
+      restartAnimation();
+    });
+
+    thetaIncrementSlider.addEventListener('input', function() {
+      thetaIncrement = parseFloat(this.value);
+      thetaIncrementValue.textContent = this.value;
+      restartAnimation();
+    });
+
+    graphColorPicker.addEventListener('input', function() {
+      graphColor = this.value;
+      restartAnimation();
+    });
+
+    renderSpeedSlider.addEventListener('input', function() {
+      renderSpeed = parseInt(this.value);
+      renderSpeedValue.textContent = this.value;
+    });
+
+    function restartAnimation() {
+      theta = 0;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawNextFrame();
+    }
+  </script>
+</body>
+</html>
