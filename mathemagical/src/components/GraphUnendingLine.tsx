@@ -10,7 +10,7 @@ export default function GraphUnendingLine({ graphTitle }: GraphUnendingLineProps
   const canvasRef = useRef(null);
   const [theta, setTheta] = useState(0);
   const lineThickness = 1
-  const [thetaIncrement, setThetaIncrement] = useState(0.0004);
+  const [thetaIncrement, setThetaIncrement] = useState(0.00004);
   const [graphColor, setGraphColor] = useState('#ffffff');
   const [colorIndex, setColorIndex] = useState(0);
   const [rainbowMode, setRainbowMode] = useState(false)
@@ -118,14 +118,17 @@ export default function GraphUnendingLine({ graphTitle }: GraphUnendingLineProps
           <div className="button-container">
           <br></br>
           <h3 className="subsection-heading codystar-light">Increment speed</h3>
-            <button onClick={() => handleIncrementChange(0.00005)}>1</button>
-            <button onClick={() => handleIncrementChange(0.0001)}>2</button>
-            <button onClick={() => handleIncrementChange(0.0004)}>3</button>
-            <button onClick={() => handleIncrementChange(0.0008)}>4</button>
-            <button onClick={() => handleIncrementChange(0.0011)}>5</button>
-            <button onClick={() => handleIncrementChange(0.0015)}>6</button>
-            <button onClick={() => handleIncrementChange(0.004)}>7</button>
-            <button onClick={() => handleIncrementChange(0.008)}>8</button>
+            <button onClick={() => handleIncrementChange(0.0000005)}>0</button>
+            <button onClick={() => handleIncrementChange(0.000001)}>1</button>
+            <button onClick={() => handleIncrementChange(0.000005)}>2</button>
+            <button onClick={() => handleIncrementChange(0.00005)}>3</button>
+            <button onClick={() => handleIncrementChange(0.0001)}>4</button>
+            <button onClick={() => handleIncrementChange(0.0004)}>5</button>
+            <button onClick={() => handleIncrementChange(0.0008)}>6</button>
+            <button onClick={() => handleIncrementChange(0.0011)}>7</button>
+            <button onClick={() => handleIncrementChange(0.0015)}>8</button>
+            <button onClick={() => handleIncrementChange(0.004)}>9</button>
+            <button onClick={() => handleIncrementChange(0.008)}>10</button>
           <button onClick={handleRestartAnimation}>Restart Animation</button>
           </div>
 
