@@ -24,7 +24,15 @@
     margin: 1rem;
 }
 
-
+.graph-container-centering {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-block: 1rem;
+}
 .section-container-centering {
     width: 100%;
     display: flex;

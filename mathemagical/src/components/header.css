@@ -4,8 +4,9 @@ display: grid;
 grid-template-columns: 1fr;
 text-align: center;
 align-items: center; /* centers elements vertically in 3 column layout*/
-padding: 2rem;
-width: 100%;
+padding: 2rem;;
+/* background-color: white; */
+min-width: 700px;
 box-sizing: border-box
 
 }

@@ -8,9 +8,7 @@ function App() {
     <>
       <div>    
         <Header></Header>    
-        <hr></hr>
         <GraphContainer></GraphContainer>
-        <hr></hr>
       </div>
     </>
   )
