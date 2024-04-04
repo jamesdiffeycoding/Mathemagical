@@ -1,6 +1,6 @@
 import './App.css'
-import GraphContainer from './components/GraphContainer.jsx'
-import Header from './components/Header.jsx'
+import GraphContainer from './components/GraphContainer.js'
+import Header from './components/Header.js'
 
 function App() {
 
