@@ -1,20 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './graph.css';
 import { coloursArray } from './rainbowhelper';
 
-export default function GraphUnendingLine({ title }) {
+type GraphUnendingLineProps = {
+  graphTitle: string;
+};
+
+export default function GraphUnendingLine({ graphTitle }: GraphUnendingLineProps) {
   const canvasRef = useRef(null);
   const [theta, setTheta] = useState(0);
-  const [thetaLimit, setThetaLimit] = useState(1000);
+  const lineThickness = 1
   const [thetaIncrement, setThetaIncrement] = useState(0.0004);
-  const [lineThickness, setLineThickness] = useState(1);
   const [graphColor, setGraphColor] = useState('#ffffff');
   const [colorIndex, setColorIndex] = useState(0);
   const [rainbowMode, setRainbowMode] = useState(false)
   const [colorCount, setColorCount] = useState(0)
-  const [canvasBackground, setCanvasBackground]= useState('rgb(0, 36, 66)')
-  const [renderSpeed, setRenderSpeed] = useState(50);
-  function handleIncrementChange (newIncrement) {
+  const [canvasBackground, setCanvasBackground]= useState(true)
+  function handleIncrementChange (newIncrement: number) {
     setThetaIncrement(newIncrement);
   }
 
@@ -22,11 +24,13 @@ export default function GraphUnendingLine({ title }) {
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    //@ts-expect-error canvas will be defined
     const ctx = canvas.getContext('2d');
+    //@ts-expect-error canvas will be defined
     const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    
-    let animationFrameId;
+    //@ts-expect-error canvas will be defined
+      const centerY = canvas.height / 2;
+    let animationFrameId: number;
 
     function drawNextFrame() {
       const realPart = Math.cos(theta) + Math.cos(Math.PI * theta);
@@ -37,8 +41,8 @@ export default function GraphUnendingLine({ title }) {
       ctx.arc(x, y, lineThickness, 0, 2 * Math.PI);
       
       //  rainbow colour augmentation if mode turned on
-      if(rainbowMode ){
-        let newColour = `rgb(${coloursArray[colorIndex][0]}, ${coloursArray[colorIndex][1]}, ${coloursArray[colorIndex][2]})`
+      if(rainbowMode){
+        const newColour = `rgb(${coloursArray[colorIndex][0]}, ${coloursArray[colorIndex][1]}, ${coloursArray[colorIndex][2]})`
         setGraphColor(newColour)    
         // count should increase by 1 every time, resetting to 0 when it reaches 10
         // index should increase by 1 whenever count = 10 
@@ -62,7 +66,7 @@ export default function GraphUnendingLine({ title }) {
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [theta, thetaLimit, lineThickness, graphColor, renderSpeed]);
+  }, [colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor]);
 
   function resetColourToWhite () {
     setGraphColor('#ffffff')
@@ -76,32 +80,41 @@ export default function GraphUnendingLine({ title }) {
     }
   }
   function toggleBackground() {
-    if (canvasBackground == 'rgb(0, 36, 66)') {
-      setCanvasBackground('rgb(220, 220, 220)')
+    if (canvasBackground == true) {
+      setCanvasBackground(false)
     } else {
-      setCanvasBackground('rgb(0, 36, 66)')
+      setCanvasBackground(true)
     }
   }
   function handleRestartAnimation () {
     const canvas = canvasRef.current;
+    //@ts-expect-error canvas will be defined
     const ctx = canvas.getContext('2d');
     
     // Clear the entire canvas
+    //@ts-expect-error canvas will be defined
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     // Reset theta to start the animation over
     setTheta(0);
-};
+}
   return (
     <div className="graph-container-item">
-      <h2 className="graph-title codystar-regular">{title || "Graph name"}</h2>
-      <canvas ref={canvasRef} className="graph-canvas" width={500} height={500} style={{backgroundColor: canvasBackground}}></canvas>
-      <div className="section-container-centering">
+      <h2 className="graph-title codystar-regular">{graphTitle || "Graph name"}</h2>
+      <canvas
+  ref={canvasRef}
+  className="graph-canvas"
+  width={500}
+  height={500}
+  style={{
+    backgroundColor: canvasBackground ? 'rgb(0, 36, 66)' : 'rgb(220, 220, 220)'
+  }}
+></canvas>      <div className="section-container-centering">
         <div className="settings-container">
           <h3 className="subsection-heading codystar-light">Toggles</h3>
 
-          <button onClick={() => toggleRainbowMode()}>{!rainbowMode ? ("Rainbow on"): ("Rainbow off")}</button>
-          <button onClick={() => toggleBackground()}>{!canvasBackground === 'rgb(0, 36, 66)' ? ("Blue canvas"): ("White canvas")}</button>
+          <button onClick={() => toggleRainbowMode()}>{rainbowMode ? ("Rainbow off"): ("Rainbow on")}</button>
+          <button onClick={() => toggleBackground()}>{canvasBackground === true? ("Blue canvas"): ("White canvas")}</button>
           <div className="button-container">
           <br></br>
           <h3 className="subsection-heading codystar-light">Increment speed</h3>
