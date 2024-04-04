@@ -82,13 +82,28 @@ export default function GraphUnendingLine({ title }) {
       setCanvasBackground('rgb(0, 36, 66)')
     }
   }
+  function handleRestartAnimation () {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    
+    // Clear the entire canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Reset theta to start the animation over
+    setTheta(0);
+};
   return (
     <div className="graph-container-item">
       <h2 className="graph-title codystar-regular">{title || "Graph name"}</h2>
       <canvas ref={canvasRef} className="graph-canvas" width={500} height={500} style={{backgroundColor: canvasBackground}}></canvas>
       <div className="section-container-centering">
         <div className="settings-container">
+          <h3 className="subsection-heading codystar-light">Toggles</h3>
+
+          <button onClick={() => toggleRainbowMode()}>{!rainbowMode ? ("Rainbow on"): ("Rainbow off")}</button>
+          <button onClick={() => toggleBackground()}>{!canvasBackground === 'rgb(0, 36, 66)' ? ("Blue canvas"): ("White canvas")}</button>
           <div className="button-container">
+          <br></br>
           <h3 className="subsection-heading codystar-light">Increment speed</h3>
             <button onClick={() => handleIncrementChange(0.00005)}>1</button>
             <button onClick={() => handleIncrementChange(0.0001)}>2</button>
@@ -98,15 +113,15 @@ export default function GraphUnendingLine({ title }) {
             <button onClick={() => handleIncrementChange(0.0015)}>6</button>
             <button onClick={() => handleIncrementChange(0.004)}>7</button>
             <button onClick={() => handleIncrementChange(0.008)}>8</button>
+          <button onClick={handleRestartAnimation}>Restart Animation</button>
           </div>
-          <br></br>
-          <h3 className="subsection-heading codystar-light">Toggles</h3>
 
-          <button onClick={() => toggleRainbowMode()}>Rainbow toggle</button>
-          <button onClick={() => toggleBackground()}>Background toggle</button>
 
         </div>
       </div>  
+      <section className="section-container-centering">
+        <p className="graph-description">The equation Z(θ) = e^θi + e^(πθ)i represents a complex function that generates points in the complex plane based on the angle parameter θ. This equation combines exponential functions and imaginary numbers to create a visually captivating pattern of points that evolve as θ varies. </p>
+      </section>
       <section className="section-container-centering">
         <div className="equations-container">
           <h3 className="subsection-heading codystar-light">Equations</h3>
@@ -115,7 +130,6 @@ export default function GraphUnendingLine({ title }) {
           <p className="graph-equations">y = sin(θ) + sin(πθ)</p>
         </div>
       </section>
-      <p className="graph-description">The equation Z(θ) = e^θi + e^(πθ)i represents a complex function that generates points in the complex plane based on the angle parameter θ. This equation combines exponential functions and imaginary numbers to create a visually captivating pattern of points that evolve as θ varies. Through the interplay of exponential terms and complex numbers, the equation showcases the beauty and complexity of mathematical relationships, offering a glimpse into the intriguing world of complex functions and the continuous nature of patterns in the complex plane. As the animation unfolds, viewers can witness the dynamic movement of points along this mathematical path, providing a visually engaging exploration of mathematical concepts</p>
 
     </div>
   );}

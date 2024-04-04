@@ -46,6 +46,10 @@ export default function Graph({ title }) {
     <div className="graph-container-item">
       <h2 className="graph-title codystar-regular">{title || "Graph name"}</h2>
       <canvas ref={canvasRef} className="graph-canvas" width={500} height={500}></canvas>
+      <section className="section-container-centering">
       <p className="graph-description">More to come...</p>
+      </section>
+
     </div>
+    
   );}
