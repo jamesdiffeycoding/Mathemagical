@@ -1,5 +1,5 @@
 .graph-container-item {
-    height: 1000px;
+    min-height: 1100px;
     padding: 2rem;
     background-color: rgb(0, 28, 51);
     border-radius: 10px;
@@ -12,9 +12,49 @@
 
 }
 
+.graph-title {
+    color: #85e4ff;
+}
+
 .graph-canvas {
     height: 600px;
+    width: 600px;
     background-color: rgb(0, 36, 66);
     border-radius: 10px;
     margin: 1rem;
+}
+
+
+.section-container-centering {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-block: 1rem;
+}
+.equations-container {
+    padding-bottom: 1rem;
+    background-color: rgb(0, 36, 66);
+    width: 600px;
+    padding: 0.5rem; 
+
+}
+.graph-equations {
+    color: #85e4ff;
+    padding: 0.3rem;
+
+}
+
+.settings-container {
+    background-color: rgb(0, 36, 66);
+    width: 600px;
+    padding: 0.5rem; 
+
+}
+
+.subsection-heading {
+    margin-bottom: 0.5rem;
+    color: white;
 }

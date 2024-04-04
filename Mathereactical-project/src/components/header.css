@@ -6,6 +6,8 @@ text-align: center;
 align-items: center; /* centers elements vertically in 3 column layout*/
 padding: 2rem;
 width: 100%;
+box-sizing: border-box
+
 }
 
 .header-grid-item {

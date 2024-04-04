@@ -1,0 +1,89 @@
+import React, { useState, useEffect, useRef } from 'react';
+import './graph.css';
+
+export default function GraphUnendingLine({ title }) {
+  const canvasRef = useRef(null);
+  const [theta, setTheta] = useState(0);
+  const [thetaLimit, setThetaLimit] = useState(1000);
+  const [thetaIncrement, setThetaIncrement] = useState(0.0001);
+  const [lineThickness, setLineThickness] = useState(0.5);
+  const [graphColor, setGraphColor] = useState("rgb(0,0,0)");
+  const [rValue, setRValue] = useState(0)
+  const [gValue, setGValue] = useState(0)
+  const [bValue, setBValue] = useState(0)
+
+  const [renderSpeed, setRenderSpeed] = useState(50);
+  function handleIncrementChange (newIncrement) {
+    setThetaIncrement(newIncrement);
+  }
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    let animationFrameId;
+
+    function drawNextFrame() {
+      const realPart = Math.cos(theta) + Math.cos(Math.PI * theta);
+      const imagPart = Math.sin(theta) + Math.sin(Math.PI * theta);
+      const x = centerX + realPart * 80;
+      const y = centerY + imagPart * 80;
+
+      ctx.beginPath();
+      ctx.arc(x, y, lineThickness, 0, 2 * Math.PI);
+
+// red mode
+      if (rValue < 255) {
+        setRValue(rValue => rValue+0.01)
+      } else if (gValue < 255) {
+        setGValue(gValue => gValue + 0.1)
+
+      } else if (bValue < 255) {
+        setBValue(bValue => bValue + 0.1)
+      } else {
+        setRValue(0)
+        setGValue(0)
+        setBValue(0)
+      }
+
+      
+      let updatedColour = `rgb(${rValue}, ${gValue}, ${bValue}`
+      console.log(updatedColour)
+      setGraphColor(updatedColour)
+
+
+      ctx.fillStyle= graphColor
+
+
+      ctx.fill();
+
+      setTheta(theta + thetaIncrement);
+    }
+
+    drawNextFrame();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [theta, thetaLimit, lineThickness, graphColor, renderSpeed]);
+
+  return (
+    <div className="graph-container-item">
+      <h2 className="graph-title codystar-regular">{title || "Graph name"}</h2>
+      <canvas ref={canvasRef} className="graph-canvas" width={500} height={500}></canvas>
+      <div className="equations-container">
+        <p className="graph-equations">Z(θ) = e^θi + e^(πθ)</p>
+        <p className="graph-equations">x = cos(θ) + cos(πθ)</p>
+        <p className="graph-equations">y = sin(θ) + sin(πθ)</p>
+      </div>
+      <p className="graph-description">The equation Z(θ) = e^θi + e^(πθ)i represents a complex function that generates points in the complex plane based on the angle parameter θ. This equation combines exponential functions and imaginary numbers to create a visually captivating pattern of points that evolve as θ varies. Through the interplay of exponential terms and complex numbers, the equation showcases the beauty and complexity of mathematical relationships, offering a glimpse into the intriguing world of complex functions and the continuous nature of patterns in the complex plane. As the animation unfolds, viewers can witness the dynamic movement of points along this mathematical path, providing a visually engaging exploration of mathematical concepts</p>
+      <div className="button-container">
+        <button onClick={() => handleIncrementChange(0.0001)}>Increment 0.0001</button>
+        <button onClick={() => handleIncrementChange(0.001)}>Increment 0.001</button>
+        <button onClick={() => handleIncrementChange(0.01)}>Increment 0.01</button>
+      </div>
+
+    </div>
+  );}
