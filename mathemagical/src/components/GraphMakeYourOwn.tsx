@@ -78,13 +78,13 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor]);
+  }, [colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor, x1Mod, x2Mod, x3Mod,x4Mod,x5Mod,x6Mod, y1Mod, y2Mod, y3Mod, y4Mod, y5Mod,y6Mod]);
 
 
 
   // FUNCTIONS _________________________________________________________________________________
   // SCALAR MODIFICATION FUNCTIONS
-  function handleX1ChangeTrueUpFalseDown(direction) {
+  function handleX1ChangeTrueUpFalseDown(direction: boolean) {
     if (direction && x1Mod<=2) {
       setX1Mod(prevValue => prevValue + 0.1)
     } else if (x1Mod == 2) {
@@ -94,7 +94,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
         setX1Mod(prevValue => prevValue - 0.1);
     }
   }
-  function handleX2ChangeTrueUpFalseDown(direction) {
+  function handleX2ChangeTrueUpFalseDown(direction: boolean) {
     if (direction && x2Mod<=2) {
       setX2Mod(prevValue => prevValue + 0.1)
     } else if (x2Mod == 2) {
@@ -104,7 +104,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
         setX2Mod(prevValue => prevValue - 0.1);
     }
   }
-  function handleX3ChangeTrueUpFalseDown(direction) {
+  function handleX3ChangeTrueUpFalseDown(direction: boolean) {
     if (direction && x3Mod <= 2) {
       setX3Mod(prevValue => prevValue + 0.1);
     } else if (x3Mod === 2) {
@@ -114,7 +114,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
         setX3Mod(prevValue => prevValue - 0.1);
     }
   }
-  function handleX4ChangeTrueUpFalseDown(direction) {
+  function handleX4ChangeTrueUpFalseDown(direction: boolean) {
     if (direction && x4Mod <= 2) {
       setX4Mod(prevValue => prevValue + 0.1);
     } else if (x4Mod === 2) {
@@ -124,7 +124,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
         setX4Mod(prevValue => prevValue - 0.1);
     }
   }
-  function handleX5ChangeTrueUpFalseDown(direction) {
+  function handleX5ChangeTrueUpFalseDown(direction: boolean) {
     if (direction && x5Mod <= 2) {
       setX5Mod(prevValue => prevValue + 0.1);
     } else if (x5Mod === 2) {
@@ -134,17 +134,17 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
         setX5Mod(prevValue => prevValue - 0.1);
     }
   }
-  function handleX6ChangeTrueUpFalseDown(direction) {
+  function handleX6ChangeTrueUpFalseDown(direction: boolean) {
     if (direction && x6Mod <= 2) {
       setX6Mod(prevValue => prevValue + 0.1);
     } else if (x6Mod === 2) {
       // do nothing
     } else {
-      if (x6ModMod >= -1.91)
+      if (x6Mod >= -1.91)
         setX6Mod(prevValue => prevValue - 0.1);
     }
   }
-  function handleY1ChangeTrueUpFalseDown(direction) {
+  function handleY1ChangeTrueUpFalseDown(direction: boolean) {
     if (direction && y1Mod <= 2) {
       setY1Mod(prevValue => prevValue + 0.1);
     } else if (y1Mod === 2) {
@@ -154,7 +154,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
         setY1Mod(prevValue => prevValue - 0.1);
     }
   }
-  function handleY2ChangeTrueUpFalseDown(direction) {
+  function handleY2ChangeTrueUpFalseDown(direction: boolean) {
     if (direction && y2Mod <= 2) {
       setY2Mod(prevValue => prevValue + 0.1);
     } else if (y2Mod === 2) {
@@ -164,7 +164,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
         setY2Mod(prevValue => prevValue - 0.1);
     }
   }
-  function handleY3ChangeTrueUpFalseDown(direction) {
+  function handleY3ChangeTrueUpFalseDown(direction: boolean) {
     if (direction && y3Mod <= 2) {
       setY3Mod(prevValue => prevValue + 0.1);
     } else if (y3Mod === 2) {
@@ -174,7 +174,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
         setY3Mod(prevValue => prevValue - 0.1);
     }
   }
-  function handleY4ChangeTrueUpFalseDown(direction) {
+  function handleY4ChangeTrueUpFalseDown(direction: boolean) {
     if (direction && y4Mod <= 2) {
       setY4Mod(prevValue => prevValue + 0.1);
     } else if (y4Mod === 2) {
@@ -184,7 +184,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
         setY4Mod(prevValue => prevValue - 0.1);
     }
   }
-  function handleY5ChangeTrueUpFalseDown(direction) {
+  function handleY5ChangeTrueUpFalseDown(direction: boolean) {
     if (direction && y5Mod <= 2) {
       setY5Mod(prevValue => prevValue + 0.1);
     } else if (y5Mod === 2) {
@@ -194,7 +194,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
         setY5Mod(prevValue => prevValue - 0.1);
       }
   }
-  function handleY6ChangeTrueUpFalseDown(direction) {
+  function handleY6ChangeTrueUpFalseDown(direction: boolean) {
     if (direction && y6Mod <= 2) {
       setY6Mod(prevValue => prevValue + 0.1);
     } else if (y6Mod === 2) {
@@ -225,7 +225,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
       setCanvasBackground(true)
     }
   }
-  function handleColourChange (value) {
+  function handleColourChange (value: string) {
     setGraphColor(value)
     setRainbowMode(false)
   }
@@ -390,7 +390,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
                       <br></br>
                       <br></br>
                     <h3 className="subsection-heading codystar-light">Colour toggles 🖌️</h3>
-                    <input type="color" onChange={() => handleColourChange(event?.target.value)}></input>
+                    <input type="color" onChange={(event) => handleColourChange((event.currentTarget as HTMLInputElement).value)} />
                     <button className="graph-btn-gold" onClick={() => toggleRainbowMode()}>{rainbowMode ? ("Rainbow off"): ("Rainbow on")}</button>
                     <button className="graph-btn-gold" onClick={() => toggleBackground()}>{canvasBackground === true? ("Blue canvas"): ("Grey canvas")}</button>
 
