@@ -20,7 +20,6 @@ export default function GraphOpticLungs({ graphTitle }: GraphOpticLungsProps) {
     setThetaIncrement(newIncrement);
   }
   const [xModification, setXModification] = useState(1.2)
-  const [yModification, setYModification] = useState(1.8)
 
 
 
@@ -36,7 +35,7 @@ export default function GraphOpticLungs({ graphTitle }: GraphOpticLungsProps) {
 
     function drawNextFrame() {
       const realPart = xModification* Math.cos(theta) + Math.cos(Math.PI * theta);
-      const imagPart = yModification* Math.sin(theta) 
+      const imagPart = 1.8* Math.sin(theta) 
       const x = centerX + realPart * 80;
       const y = centerY + imagPart * 80;
       ctx.beginPath();
@@ -68,7 +67,7 @@ export default function GraphOpticLungs({ graphTitle }: GraphOpticLungsProps) {
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor]);
+  }, [colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor, xModification]);
 
   function resetColourToWhite () {
     setGraphColor('#ffffff')
@@ -100,14 +99,10 @@ export default function GraphOpticLungs({ graphTitle }: GraphOpticLungsProps) {
     // Reset theta to start the animation over
     setTheta(0);
 }
-  function handleXModification (value) {
+  function handleXModification (value: number) {
     setXModification(value)
   }
-  function handleYModification (value) {
-    setYModification(value)
-  }
-
-  function handleColourChange (value) {
+  function handleColourChange (value: string) {
     setGraphColor(value)
     setRainbowMode(false)
   }
@@ -134,10 +129,10 @@ export default function GraphOpticLungs({ graphTitle }: GraphOpticLungsProps) {
                       <br></br>
                       <br></br>
                   <h3 className="subsection-heading codystar-light">Colour toggles 🖌️</h3>
-                  <input type="color" onChange={() => handleColourChange(event?.target.value)}></input>
+                  <input type="color" onChange={(event) => handleColourChange((event.currentTarget as HTMLInputElement).value)} />
                   <button className="graph-btn-blue" onClick={() => toggleRainbowMode()}>{rainbowMode ? ("Rainbow off"): ("Rainbow on")}</button>
                   <button className="graph-btn-blue" onClick={() => toggleBackground()}>{canvasBackground === true? ("Blue canvas"): ("Grey canvas")}</button>
-<div className="button-container">
+        <div className="button-container">
                     <br></br>
                     <h3 className="subsection-heading codystar-light">Increment speed ⏸️ </h3>
                       <button className="graph-btn-blue stop-button" onClick={() => handleIncrementChange(0)}>S</button>
