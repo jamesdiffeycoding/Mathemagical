@@ -98,6 +98,10 @@ export default function GraphUnendingLine({ graphTitle }: GraphUnendingLineProps
     // Reset theta to start the animation over
     setTheta(0);
 }
+function handleColourChange (value) {
+  setGraphColor(value)
+  setRainbowMode(false)
+}
   return (
     <div className="graph-container-centering">
               <div className="graph-container-item">
@@ -113,14 +117,15 @@ export default function GraphUnendingLine({ graphTitle }: GraphUnendingLineProps
                       ></canvas>      
           <div className="section-container-centering">
                   <div className="settings-container">
-                    <h3 className="subsection-heading codystar-light">Toggles</h3>
+                  <h3 className="subsection-heading codystar-light">Colour toggles 🖌️</h3>
 
-                    <button onClick={() => toggleRainbowMode()}>{rainbowMode ? ("Rainbow off"): ("Rainbow on")}</button>
-                    <button onClick={() => toggleBackground()}>{canvasBackground === true? ("Blue canvas"): ("White canvas")}</button>
-                    <div className="button-container">
+          <input type="color" onChange={() => handleColourChange(event?.target.value)}></input>
+          <button onClick={() => toggleRainbowMode()}>{rainbowMode ? ("Rainbow off"): ("Rainbow on")}</button>
+          <button onClick={() => toggleBackground()}>{canvasBackground === true? ("Blue canvas"): ("Grey canvas")}</button>
+<div className="button-container">
                     <br></br>
-                    <h3 className="subsection-heading codystar-light">Increment speed</h3>
-                      <button onClick={() => handleIncrementChange(0.0000005)}>0</button>
+                    <h3 className="subsection-heading codystar-light">Increment speed ⏸️ </h3>
+                    <button className="stop-button" onClick={() => handleIncrementChange(0)}>S</button>
                       <button onClick={() => handleIncrementChange(0.000001)}>1</button>
                       <button onClick={() => handleIncrementChange(0.000005)}>2</button>
                       <button onClick={() => handleIncrementChange(0.00005)}>3</button>
@@ -131,7 +136,12 @@ export default function GraphUnendingLine({ graphTitle }: GraphUnendingLineProps
                       <button onClick={() => handleIncrementChange(0.0015)}>8</button>
                       <button onClick={() => handleIncrementChange(0.004)}>9</button>
                       <button onClick={() => handleIncrementChange(0.008)}>10</button>
-                    <button onClick={handleRestartAnimation}>Restart Animation</button>
+                      <br></br>
+                      <br></br>
+
+                      <h3 className="subsection-heading codystar-light">Restart 🔄</h3>
+                      <button onClick={handleRestartAnimation}>Restart Animation</button>
+                      
                     </div>
 
 
