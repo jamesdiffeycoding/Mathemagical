@@ -320,66 +320,70 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
 
                       <section className="scalar-container">
                         <div className="scalar-column-left">
+                          <h3>X</h3>
                           <div className="scalar-pair">
-                            <p className="scalar-tag"> X1</p>
+                            <p className="scalar-tag">sin(θ)</p>
                             <button className="graph-btn-gold" onClick={() => handleX1ChangeTrueUpFalseDown(true)}>+</button>
                             <button className="graph-btn-gold" onClick={() => handleX1ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
-                            <p className="scalar-tag"> X2</p>
+                            <p className="scalar-tag">sin(πθ)</p>
                             <button className="graph-btn-gold" onClick={() => handleX2ChangeTrueUpFalseDown(true)}>+</button>
                             <button className="graph-btn-gold" onClick={() => handleX2ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
-                            <p className="scalar-tag"> X3</p>
+                            <p className="scalar-tag">cos(θ)</p>
                             <button className="graph-btn-gold" onClick={() => handleX3ChangeTrueUpFalseDown(true)}>+</button>
                             <button className="graph-btn-gold" onClick={() => handleX3ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
-                            <p className="scalar-tag"> X4</p>
+                            <p className="scalar-tag">cos(πθ)</p>
                             <button className="graph-btn-gold" onClick={() => handleX4ChangeTrueUpFalseDown(true)}>+</button>
                             <button className="graph-btn-gold" onClick={() => handleX4ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
-                            <p className="scalar-tag"> X5</p>
+                            <p className="scalar-tag">tan(θ)</p>
                             <button className="graph-btn-gold" onClick={() => handleX5ChangeTrueUpFalseDown(true)}>+</button>
                             <button className="graph-btn-gold" onClick={() => handleX5ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
-                            <p className="scalar-tag"> X6</p>
+                            <p className="scalar-tag">tan(πθ)</p>
                             <button className="graph-btn-gold" onClick={() => handleX6ChangeTrueUpFalseDown(true)}>+</button>
                             <button className="graph-btn-gold" onClick={() => handleX6ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                         </div>
                         {/* Y BUTTONS */}
                         <div className="scalar-column-right">
+                        <h3>Y</h3>
+
                           <div className="scalar-pair">
-                            <p className="scalar-tag"> Y1</p>
+                            
+                          <p className="scalar-tag">sin(θ)</p>
                             <button className="graph-btn-gold" onClick={() => handleY1ChangeTrueUpFalseDown(true)}>+</button>
                             <button className="graph-btn-gold" onClick={() => handleY1ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
-                            <p className="scalar-tag"> Y2</p>
+                          <p className="scalar-tag">sin(πθ)</p>
                             <button className="graph-btn-gold" onClick={() => handleY2ChangeTrueUpFalseDown(true)}>+</button>
                             <button className="graph-btn-gold" onClick={() => handleY2ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
-                            <p className="scalar-tag"> Y3</p>
+                            <p className="scalar-tag">cos(θ)</p>
                             <button className="graph-btn-gold" onClick={() => handleY3ChangeTrueUpFalseDown(true)}>+</button>
                             <button className="graph-btn-gold" onClick={() => handleY3ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
-                            <p className="scalar-tag"> Y4</p>
+                            <p className="scalar-tag">cos(πθ)</p>
                             <button className="graph-btn-gold" onClick={() => handleY4ChangeTrueUpFalseDown(true)}>+</button>
                             <button className="graph-btn-gold" onClick={() => handleY4ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
-                            <p className="scalar-tag"> Y5</p>
+                            <p className="scalar-tag">tan(θ)</p>
                             <button className="graph-btn-gold" onClick={() => handleY5ChangeTrueUpFalseDown(true)}>+</button>
                             <button className="graph-btn-gold" onClick={() => handleY5ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
-                            <p className="scalar-tag"> Y6</p>
+                            <p className="scalar-tag">tan(πθ)</p>
                             <button className="graph-btn-gold" onClick={() => handleY6ChangeTrueUpFalseDown(true)}>+</button>
                             <button className="graph-btn-gold" onClick={() => handleY6ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
