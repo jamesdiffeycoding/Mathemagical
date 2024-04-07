@@ -159,14 +159,13 @@ export default function GraphOpticLungs({ graphTitle }: GraphOpticLungsProps) {
                   </div>
                 </div>  
                 <section className="section-container-centering">
-                  {/* <p className="graph-description">The equation Z(θ) = e^θi + e^(πθ)i represents a complex function that generates points in the complex plane based on the angle parameter θ. This equation combines exponential functions and imaginary numbers to create a visually captivating pattern of points that evolve as θ varies. </p> */}
+                  <p className="graph-description">Equations such as this can trigger our paridolic tendencies, inducing us to form images of objects even where there are none. What do you see when you look at the shape this graph makes? Try changing the scalar modification, which scales the graph horizontally. Does it change what you see?</p>
                 </section>
                 <section className="section-container-centering">
                   <div className="equations-container">
                     <h3 className="subsection-heading codystar-light">Equations</h3>
-                    {/* <p className="graph-equations">Z(θ) = e^θi + e^(πθ)</p> */}
-                    {/* <p className="graph-equations">x = cos(θ) + cos(πθ)</p> */}
-                    {/* <p className="graph-equations">y = sin(θ) + sin(πθ)</p> */}
+                    <p className="graph-equations">x = 1.2 cos(θ) + cos(πθ)</p>
+                    <p className="graph-equations">y = 1.8 sin(θ)</p>
                   </div>
                 </section>
 

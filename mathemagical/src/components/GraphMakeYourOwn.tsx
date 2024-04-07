@@ -271,158 +271,167 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
   return (
     <div className="graph-container-centering">
               <div className="graph-container-item makeyourown-border">
-                <h2 className="graph-title codystar-regular makeyourown-title">{graphTitle || "Graph name"}</h2>
-                      <canvas
-                        ref={canvasRef}
-                        className="graph-canvas"
-                        width={500}
-                        height={500}
-                        style={{
-                          backgroundColor: canvasBackground ? 'rgb(0, 36, 66)' : 'rgb(220, 220, 220)'
-                        }}
-                      ></canvas>      
-          <div className="section-container-centering">
-                  <div className="settings-container">
-                    <h3 className="subsection-heading codystar-light">Scalar Modifications 🧑‍🔬</h3>
-                    <section className="scalar-equation">
-                      <div className="scalar-equation-item">
-                        <p>
-                          x = <span className="scalar-decimals">{x1Mod.toFixed(1)}</span> * sin(θ) 
-                          {x2Mod >= 0 ? ' + ' : ' - '}
-                          <span className="scalar-decimals">{Math.abs(x2Mod).toFixed(1)}</span> * sin (πθ) 
-                          {x3Mod >= 0 ? ' + ' : ' - '}
-                          <span className="scalar-decimals">{Math.abs(x3Mod).toFixed(1)}</span> * cos(θ) 
-                          {x4Mod >= 0 ? ' + ' : ' - '}
-                          <span className="scalar-decimals">{Math.abs(x4Mod).toFixed(1)}</span> * cos(πθ) 
-                          {x5Mod >= 0 ? ' + ' : ' - '}
-                          <span className="scalar-decimals">{Math.abs(x5Mod).toFixed(1)}</span> * tan(θ) 
-                          {x6Mod >= 0 ? ' + ' : ' - '}
-                          <span className="scalar-decimals">{Math.abs(x6Mod).toFixed(1)}</span> * tan(πθ)
-                        </p>
-                      </div>
-                      <div className="scalar-equation-item">
-                        <p>
-                          y = <span className="scalar-decimals">{y1Mod.toFixed(1)}</span> * sin(θ) 
-                          {y2Mod >= 0 ? ' + ' : ' - '}
-                          <span className="scalar-decimals">{Math.abs(y2Mod).toFixed(1)}</span> * sin (πθ) 
-                          {y3Mod >= 0 ? ' + ' : ' - '}
-                          <span className="scalar-decimals">{Math.abs(y3Mod).toFixed(1)}</span> * cos(θ) 
-                          {y4Mod >= 0 ? ' + ' : ' - '}
-                          <span className="scalar-decimals">{Math.abs(y4Mod).toFixed(1)}</span> * cos(πθ) 
-                          {y5Mod >= 0 ? ' + ' : ' - '}
-                          <span className="scalar-decimals">{Math.abs(y5Mod).toFixed(1)}</span> * tan(θ) 
-                          {y6Mod >= 0 ? ' + ' : ' - '}
-                          <span className="scalar-decimals">{Math.abs(y6Mod).toFixed(1)}</span> * tan(πθ)
-                        </p>
-                      </div>
-                      </section>
+                <section className="makeyourown-grid">
+                    <div className="makeyourown-grid-leftcol">
 
 
-                      <section className="scalar-container">
-                        <div className="scalar-column-left">
-                          <h3>X</h3>
-                          <div className="scalar-pair">
-                            <p className="scalar-tag">sin(θ)</p>
-                            <button className="graph-btn-gold" onClick={() => handleX1ChangeTrueUpFalseDown(true)}>+</button>
-                            <button className="graph-btn-gold" onClick={() => handleX1ChangeTrueUpFalseDown(false)}>-</button>
-                          </div>
-                          <div className="scalar-pair">
-                            <p className="scalar-tag">sin(πθ)</p>
-                            <button className="graph-btn-gold" onClick={() => handleX2ChangeTrueUpFalseDown(true)}>+</button>
-                            <button className="graph-btn-gold" onClick={() => handleX2ChangeTrueUpFalseDown(false)}>-</button>
-                          </div>
-                          <div className="scalar-pair">
-                            <p className="scalar-tag">cos(θ)</p>
-                            <button className="graph-btn-gold" onClick={() => handleX3ChangeTrueUpFalseDown(true)}>+</button>
-                            <button className="graph-btn-gold" onClick={() => handleX3ChangeTrueUpFalseDown(false)}>-</button>
-                          </div>
-                          <div className="scalar-pair">
-                            <p className="scalar-tag">cos(πθ)</p>
-                            <button className="graph-btn-gold" onClick={() => handleX4ChangeTrueUpFalseDown(true)}>+</button>
-                            <button className="graph-btn-gold" onClick={() => handleX4ChangeTrueUpFalseDown(false)}>-</button>
-                          </div>
-                          <div className="scalar-pair">
-                            <p className="scalar-tag">tan(θ)</p>
-                            <button className="graph-btn-gold" onClick={() => handleX5ChangeTrueUpFalseDown(true)}>+</button>
-                            <button className="graph-btn-gold" onClick={() => handleX5ChangeTrueUpFalseDown(false)}>-</button>
-                          </div>
-                          <div className="scalar-pair">
-                            <p className="scalar-tag">tan(πθ)</p>
-                            <button className="graph-btn-gold" onClick={() => handleX6ChangeTrueUpFalseDown(true)}>+</button>
-                            <button className="graph-btn-gold" onClick={() => handleX6ChangeTrueUpFalseDown(false)}>-</button>
-                          </div>
+                                        <h2 className="graph-title codystar-regular makeyourown-title">{graphTitle || "Graph name"}</h2>
+                                              <canvas
+                                                ref={canvasRef}
+                                                className="graph-canvas"
+                                                width={500}
+                                                height={500}
+                                                style={{
+                                                  backgroundColor: canvasBackground ? 'rgb(0, 36, 66)' : 'rgb(220, 220, 220)'
+                                                }}
+                                                ></canvas>      
                         </div>
-                        {/* Y BUTTONS */}
-                        <div className="scalar-column-right">
-                        <h3>Y</h3>
+                        <div className="makeyourown-grid-rightcol">
 
-                          <div className="scalar-pair">
-                            
-                          <p className="scalar-tag">sin(θ)</p>
-                            <button className="graph-btn-gold" onClick={() => handleY1ChangeTrueUpFalseDown(true)}>+</button>
-                            <button className="graph-btn-gold" onClick={() => handleY1ChangeTrueUpFalseDown(false)}>-</button>
-                          </div>
-                          <div className="scalar-pair">
-                          <p className="scalar-tag">sin(πθ)</p>
-                            <button className="graph-btn-gold" onClick={() => handleY2ChangeTrueUpFalseDown(true)}>+</button>
-                            <button className="graph-btn-gold" onClick={() => handleY2ChangeTrueUpFalseDown(false)}>-</button>
-                          </div>
-                          <div className="scalar-pair">
-                            <p className="scalar-tag">cos(θ)</p>
-                            <button className="graph-btn-gold" onClick={() => handleY3ChangeTrueUpFalseDown(true)}>+</button>
-                            <button className="graph-btn-gold" onClick={() => handleY3ChangeTrueUpFalseDown(false)}>-</button>
-                          </div>
-                          <div className="scalar-pair">
-                            <p className="scalar-tag">cos(πθ)</p>
-                            <button className="graph-btn-gold" onClick={() => handleY4ChangeTrueUpFalseDown(true)}>+</button>
-                            <button className="graph-btn-gold" onClick={() => handleY4ChangeTrueUpFalseDown(false)}>-</button>
-                          </div>
-                          <div className="scalar-pair">
-                            <p className="scalar-tag">tan(θ)</p>
-                            <button className="graph-btn-gold" onClick={() => handleY5ChangeTrueUpFalseDown(true)}>+</button>
-                            <button className="graph-btn-gold" onClick={() => handleY5ChangeTrueUpFalseDown(false)}>-</button>
-                          </div>
-                          <div className="scalar-pair">
-                            <p className="scalar-tag">tan(πθ)</p>
-                            <button className="graph-btn-gold" onClick={() => handleY6ChangeTrueUpFalseDown(true)}>+</button>
-                            <button className="graph-btn-gold" onClick={() => handleY6ChangeTrueUpFalseDown(false)}>-</button>
-                          </div>
+                                  <div className="section-container-centering">
+                                          <div className="settings-container">
+                                            <h3 className="subsection-heading codystar-light">Scalar Modifications 🧑‍🔬</h3>
+                                            <section className="scalar-equation">
+                                              <div className="scalar-equation-item">
+                                                <p>
+                                                  x = <span className="scalar-decimals">{x1Mod.toFixed(1)}</span> * sin(θ) 
+                                                  {x2Mod >= 0 ? ' + ' : ' - '}
+                                                  <span className="scalar-decimals">{Math.abs(x2Mod).toFixed(1)}</span> * sin (πθ) 
+                                                  {x3Mod >= 0 ? ' + ' : ' - '}
+                                                  <span className="scalar-decimals">{Math.abs(x3Mod).toFixed(1)}</span> * cos(θ) 
+                                                  {x4Mod >= 0 ? ' + ' : ' - '}
+                                                  <span className="scalar-decimals">{Math.abs(x4Mod).toFixed(1)}</span> * cos(πθ) 
+                                                  {x5Mod >= 0 ? ' + ' : ' - '}
+                                                  <span className="scalar-decimals">{Math.abs(x5Mod).toFixed(1)}</span> * tan(θ) 
+                                                  {x6Mod >= 0 ? ' + ' : ' - '}
+                                                  <span className="scalar-decimals">{Math.abs(x6Mod).toFixed(1)}</span> * tan(πθ)
+                                                </p>
+                                              </div>
+                                              <div className="scalar-equation-item">
+                                                <p>
+                                                  y = <span className="scalar-decimals">{y1Mod.toFixed(1)}</span> * sin(θ) 
+                                                  {y2Mod >= 0 ? ' + ' : ' - '}
+                                                  <span className="scalar-decimals">{Math.abs(y2Mod).toFixed(1)}</span> * sin (πθ) 
+                                                  {y3Mod >= 0 ? ' + ' : ' - '}
+                                                  <span className="scalar-decimals">{Math.abs(y3Mod).toFixed(1)}</span> * cos(θ) 
+                                                  {y4Mod >= 0 ? ' + ' : ' - '}
+                                                  <span className="scalar-decimals">{Math.abs(y4Mod).toFixed(1)}</span> * cos(πθ) 
+                                                  {y5Mod >= 0 ? ' + ' : ' - '}
+                                                  <span className="scalar-decimals">{Math.abs(y5Mod).toFixed(1)}</span> * tan(θ) 
+                                                  {y6Mod >= 0 ? ' + ' : ' - '}
+                                                  <span className="scalar-decimals">{Math.abs(y6Mod).toFixed(1)}</span> * tan(πθ)
+                                                </p>
+                                              </div>
+                                              </section>
+
+
+                                              <section className="scalar-container">
+                                                <div className="scalar-column-left">
+                                                  <h3>X</h3>
+                                                  <div className="scalar-pair">
+                                                    <p className="scalar-tag">sin(θ)</p>
+                                                    <button className="graph-btn-gold" onClick={() => handleX1ChangeTrueUpFalseDown(true)}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleX1ChangeTrueUpFalseDown(false)}>-</button>
+                                                  </div>
+                                                  <div className="scalar-pair">
+                                                    <p className="scalar-tag">sin(πθ)</p>
+                                                    <button className="graph-btn-gold" onClick={() => handleX2ChangeTrueUpFalseDown(true)}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleX2ChangeTrueUpFalseDown(false)}>-</button>
+                                                  </div>
+                                                  <div className="scalar-pair">
+                                                    <p className="scalar-tag">cos(θ)</p>
+                                                    <button className="graph-btn-gold" onClick={() => handleX3ChangeTrueUpFalseDown(true)}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleX3ChangeTrueUpFalseDown(false)}>-</button>
+                                                  </div>
+                                                  <div className="scalar-pair">
+                                                    <p className="scalar-tag">cos(πθ)</p>
+                                                    <button className="graph-btn-gold" onClick={() => handleX4ChangeTrueUpFalseDown(true)}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleX4ChangeTrueUpFalseDown(false)}>-</button>
+                                                  </div>
+                                                  <div className="scalar-pair">
+                                                    <p className="scalar-tag">tan(θ)</p>
+                                                    <button className="graph-btn-gold" onClick={() => handleX5ChangeTrueUpFalseDown(true)}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleX5ChangeTrueUpFalseDown(false)}>-</button>
+                                                  </div>
+                                                  <div className="scalar-pair">
+                                                    <p className="scalar-tag">tan(πθ)</p>
+                                                    <button className="graph-btn-gold" onClick={() => handleX6ChangeTrueUpFalseDown(true)}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleX6ChangeTrueUpFalseDown(false)}>-</button>
+                                                  </div>
+                                                </div>
+                                                {/* Y BUTTONS */}
+                                                <div className="scalar-column-right">
+                                                <h3>Y</h3>
+
+                                                  <div className="scalar-pair">
+                                                    
+                                                  <p className="scalar-tag">sin(θ)</p>
+                                                    <button className="graph-btn-gold" onClick={() => handleY1ChangeTrueUpFalseDown(true)}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleY1ChangeTrueUpFalseDown(false)}>-</button>
+                                                  </div>
+                                                  <div className="scalar-pair">
+                                                  <p className="scalar-tag">sin(πθ)</p>
+                                                    <button className="graph-btn-gold" onClick={() => handleY2ChangeTrueUpFalseDown(true)}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleY2ChangeTrueUpFalseDown(false)}>-</button>
+                                                  </div>
+                                                  <div className="scalar-pair">
+                                                    <p className="scalar-tag">cos(θ)</p>
+                                                    <button className="graph-btn-gold" onClick={() => handleY3ChangeTrueUpFalseDown(true)}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleY3ChangeTrueUpFalseDown(false)}>-</button>
+                                                  </div>
+                                                  <div className="scalar-pair">
+                                                    <p className="scalar-tag">cos(πθ)</p>
+                                                    <button className="graph-btn-gold" onClick={() => handleY4ChangeTrueUpFalseDown(true)}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleY4ChangeTrueUpFalseDown(false)}>-</button>
+                                                  </div>
+                                                  <div className="scalar-pair">
+                                                    <p className="scalar-tag">tan(θ)</p>
+                                                    <button className="graph-btn-gold" onClick={() => handleY5ChangeTrueUpFalseDown(true)}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleY5ChangeTrueUpFalseDown(false)}>-</button>
+                                                  </div>
+                                                  <div className="scalar-pair">
+                                                    <p className="scalar-tag">tan(πθ)</p>
+                                                    <button className="graph-btn-gold" onClick={() => handleY6ChangeTrueUpFalseDown(true)}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleY6ChangeTrueUpFalseDown(false)}>-</button>
+                                                  </div>
+                                                </div>
+
+                                              </section>
+
+                                              <br></br>
+                                              <br></br>
+                                            <h3 className="subsection-heading codystar-light">Colour toggles 🖌️</h3>
+                                            <input type="color" onChange={(event) => handleColourChange((event.currentTarget as HTMLInputElement).value)} />
+                                            <button className="graph-btn-gold" onClick={() => toggleRainbowMode()}>{rainbowMode ? ("Rainbow off"): ("Rainbow on")}</button>
+                                            <button className="graph-btn-gold" onClick={() => toggleBackground()}>{canvasBackground === true? ("Blue canvas"): ("Grey canvas")}</button>
+
+                                            <div className="button-container">
+                                            <br></br>
+                                            <h3 className="subsection-heading codystar-light">Increment speed ⏸️</h3>
+                                            <button className="graph-btn-gold stop-button" onClick={() => handleIncrementChange(0)}>S</button>
+                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.000001)}>1</button>
+                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.000005)}>2</button>
+                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.00005)}>3</button>
+                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0001)}>4</button>
+                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0004)}>5</button>
+                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0008)}>6</button>
+                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0011)}>7</button>
+                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0015)}>8</button>
+                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.004)}>9</button>
+                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.008)}>10</button>
+                                              <br></br>
+                                              <br></br>
+                                              <h3 className="subsection-heading codystar-light">Restart / reset 🔄</h3>
+                                                <button className="graph-btn-gold" onClick={handleRestartAnimation}>Restart Animation</button>
+                                                <button className="graph-btn-gold" onClick={handleResetToDefaults}>Reset to defaults</button>
+                                            </div>
+                                          </div>
+                                        </div>  
+                                        <section className="section-container-centering">
+                                          {/* <p className="graph-description">The equation Z(θ) = e^θi + e^(πθ)i represents a complex function that generates points in the complex plane based on the angle parameter θ. This equation combines exponential functions and imaginary numbers to create a visually captivating pattern of points that evolve as θ varies. </p> */}
+                                        </section>
                         </div>
-
-                      </section>
-
-                      <br></br>
-                      <br></br>
-                    <h3 className="subsection-heading codystar-light">Colour toggles 🖌️</h3>
-                    <input type="color" onChange={(event) => handleColourChange((event.currentTarget as HTMLInputElement).value)} />
-                    <button className="graph-btn-gold" onClick={() => toggleRainbowMode()}>{rainbowMode ? ("Rainbow off"): ("Rainbow on")}</button>
-                    <button className="graph-btn-gold" onClick={() => toggleBackground()}>{canvasBackground === true? ("Blue canvas"): ("Grey canvas")}</button>
-
-                    <div className="button-container">
-                    <br></br>
-                    <h3 className="subsection-heading codystar-light">Increment speed ⏸️</h3>
-                    <button className="graph-btn-gold stop-button" onClick={() => handleIncrementChange(0)}>S</button>
-                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.000001)}>1</button>
-                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.000005)}>2</button>
-                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.00005)}>3</button>
-                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0001)}>4</button>
-                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0004)}>5</button>
-                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0008)}>6</button>
-                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0011)}>7</button>
-                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0015)}>8</button>
-                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.004)}>9</button>
-                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.008)}>10</button>
-                      <br></br>
-                      <br></br>
-                      <h3 className="subsection-heading codystar-light">Restart / reset 🔄</h3>
-                        <button className="graph-btn-gold" onClick={handleRestartAnimation}>Restart Animation</button>
-                        <button className="graph-btn-gold" onClick={handleResetToDefaults}>Reset to defaults</button>
-                    </div>
-                  </div>
-                </div>  
-                <section className="section-container-centering">
-                  {/* <p className="graph-description">The equation Z(θ) = e^θi + e^(πθ)i represents a complex function that generates points in the complex plane based on the angle parameter θ. This equation combines exponential functions and imaginary numbers to create a visually captivating pattern of points that evolve as θ varies. </p> */}
-                </section>
+                                </section>
 
               </div>
     </div>
