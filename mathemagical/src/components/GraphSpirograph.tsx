@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import './graph.css';
 import { coloursArray } from './rainbowhelper';
 
-type GraphUnendingLineProps = {
+type GraphSpirographProps = {
   graphTitle: string;
 };
 
-export default function GraphUnendingLine({ graphTitle }: GraphUnendingLineProps) {
+export default function GraphSpirograph({ graphTitle }: GraphSpirographProps) {
   const canvasRef = useRef(null);
   const [theta, setTheta] = useState(0);
   const lineThickness = 1
