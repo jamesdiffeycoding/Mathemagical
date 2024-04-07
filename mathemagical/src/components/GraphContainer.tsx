@@ -1,9 +1,8 @@
 import GraphUnendingLine from './GraphUnendingLine';
 import GraphSpirograph from './GraphMakeYourOwn';
-import GraphOpticsLungs from './GraphOpticLungs';
+import GraphOpticLungs from './GraphOpticLungs';
 
 import './graphcontainer.css'
-import GraphOpticLungs from './GraphOpticLungs';
 
 
 export default function GraphContainer() {

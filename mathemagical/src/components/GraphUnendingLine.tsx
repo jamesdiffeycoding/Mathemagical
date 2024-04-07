@@ -98,7 +98,7 @@ export default function GraphUnendingLine({ graphTitle }: GraphUnendingLineProps
     // Reset theta to start the animation over
     setTheta(0);
 }
-function handleColourChange (value) {
+function handleColourChange (value: string) {
   setGraphColor(value)
   setRainbowMode(false)
 }
@@ -119,7 +119,7 @@ function handleColourChange (value) {
                   <div className="settings-container">
                   <h3 className="subsection-heading codystar-light">Colour toggles 🖌️</h3>
 
-          <input type="color" onChange={() => handleColourChange(event?.target.value)}></input>
+                <input type="color" onChange={(event) => handleColourChange((event.currentTarget as HTMLInputElement).value)} />
           <button className="graph-btn-blue" onClick={() => toggleRainbowMode()}>{rainbowMode ? ("Rainbow off"): ("Rainbow on")}</button>
           <button className="graph-btn-blue" onClick={() => toggleBackground()}>{canvasBackground === true? ("Blue canvas"): ("Grey canvas")}</button>
 <div className="button-container">
