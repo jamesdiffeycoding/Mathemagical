@@ -126,37 +126,37 @@ export default function GraphOpticLungs({ graphTitle }: GraphOpticLungsProps) {
                       ></canvas>      
           <div className="section-container-centering">
                   <div className="settings-container">
+                    <h3 className="subsection-heading codystar-light">Scalar Modification 🧑‍🔬</h3>
+                      <button className="graph-btn-blue" onClick={() => handleXModification(0)}>0</button>
+                      <button className="graph-btn-blue" onClick={() => handleXModification(0.5)}>0.5</button>
+                      <button className="graph-btn-blue" onClick={() => handleXModification(1)}>1</button>
+                      <button className="graph-btn-blue" onClick={() => handleXModification(1.5)}>1.5</button>
+                      <br></br>
+                      <br></br>
                   <h3 className="subsection-heading codystar-light">Colour toggles 🖌️</h3>
                   <input type="color" onChange={() => handleColourChange(event?.target.value)}></input>
-                  <button onClick={() => toggleRainbowMode()}>{rainbowMode ? ("Rainbow off"): ("Rainbow on")}</button>
-                  <button onClick={() => toggleBackground()}>{canvasBackground === true? ("Blue canvas"): ("Grey canvas")}</button>
+                  <button className="graph-btn-blue" onClick={() => toggleRainbowMode()}>{rainbowMode ? ("Rainbow off"): ("Rainbow on")}</button>
+                  <button className="graph-btn-blue" onClick={() => toggleBackground()}>{canvasBackground === true? ("Blue canvas"): ("Grey canvas")}</button>
 <div className="button-container">
                     <br></br>
                     <h3 className="subsection-heading codystar-light">Increment speed ⏸️ </h3>
-                      <button className="stop-button" onClick={() => handleIncrementChange(0)}>S</button>
-                      <button onClick={() => handleIncrementChange(0.000001)}>1</button>
-                      <button onClick={() => handleIncrementChange(0.000005)}>2</button>
-                      <button onClick={() => handleIncrementChange(0.00005)}>3</button>
-                      <button onClick={() => handleIncrementChange(0.0001)}>4</button>
-                      <button onClick={() => handleIncrementChange(0.0004)}>5</button>
-                      <button onClick={() => handleIncrementChange(0.0008)}>6</button>
-                      <button onClick={() => handleIncrementChange(0.0011)}>7</button>
-                      <button onClick={() => handleIncrementChange(0.0015)}>8</button>
-                      <button onClick={() => handleIncrementChange(0.004)}>9</button>
-                      <button onClick={() => handleIncrementChange(0.008)}>10</button>
+                      <button className="graph-btn-blue stop-button" onClick={() => handleIncrementChange(0)}>S</button>
+                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.000001)}>1</button>
+                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.000005)}>2</button>
+                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.00005)}>3</button>
+                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.0001)}>4</button>
+                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.0004)}>5</button>
+                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.0008)}>6</button>
+                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.0011)}>7</button>
+                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.0015)}>8</button>
+                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.004)}>9</button>
+                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.008)}>10</button>
                       <br></br>
                       <br></br>
 
-                    <h3 className="subsection-heading codystar-light">X Modification</h3>
-                      <button onClick={() => handleXModification(0)}>0</button>
-                      <button onClick={() => handleXModification(0.5)}>0.5</button>
-                      <button onClick={() => handleXModification(1)}>1</button>
-                      <button onClick={() => handleXModification(1.5)}>1.5</button>
-                      <br></br>
-                      <br></br>
 
                       <h3 className="subsection-heading codystar-light">Restart / reset 🔄</h3>
-                      <button onClick={handleRestartAnimation}>Restart Animation</button>
+                      <button className="graph-btn-blue" onClick={handleRestartAnimation}>Restart Animation</button>
 
                     </div>
 

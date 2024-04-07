@@ -204,13 +204,6 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
       setY6Mod(prevValue => prevValue - 0.1);
     }
   }
-  
-  
-  
-  
-  
-
-  
 
 
   // COLOUR FUNCTIONS __________________________________________________________________________
@@ -329,66 +322,66 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
                         <div className="scalar-column-left">
                           <div className="scalar-pair">
                             <p className="scalar-tag"> X1</p>
-                            <button onClick={() => handleX1ChangeTrueUpFalseDown(true)}>+</button>
-                            <button onClick={() => handleX1ChangeTrueUpFalseDown(false)}>-</button>
+                            <button className="graph-btn-gold" onClick={() => handleX1ChangeTrueUpFalseDown(true)}>+</button>
+                            <button className="graph-btn-gold" onClick={() => handleX1ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
                             <p className="scalar-tag"> X2</p>
-                            <button onClick={() => handleX2ChangeTrueUpFalseDown(true)}>+</button>
-                            <button onClick={() => handleX2ChangeTrueUpFalseDown(false)}>-</button>
+                            <button className="graph-btn-gold" onClick={() => handleX2ChangeTrueUpFalseDown(true)}>+</button>
+                            <button className="graph-btn-gold" onClick={() => handleX2ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
                             <p className="scalar-tag"> X3</p>
-                            <button onClick={() => handleX3ChangeTrueUpFalseDown(true)}>+</button>
-                            <button onClick={() => handleX3ChangeTrueUpFalseDown(false)}>-</button>
+                            <button className="graph-btn-gold" onClick={() => handleX3ChangeTrueUpFalseDown(true)}>+</button>
+                            <button className="graph-btn-gold" onClick={() => handleX3ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
                             <p className="scalar-tag"> X4</p>
-                            <button onClick={() => handleX4ChangeTrueUpFalseDown(true)}>+</button>
-                            <button onClick={() => handleX4ChangeTrueUpFalseDown(false)}>-</button>
+                            <button className="graph-btn-gold" onClick={() => handleX4ChangeTrueUpFalseDown(true)}>+</button>
+                            <button className="graph-btn-gold" onClick={() => handleX4ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
                             <p className="scalar-tag"> X5</p>
-                            <button onClick={() => handleX5ChangeTrueUpFalseDown(true)}>+</button>
-                            <button onClick={() => handleX5ChangeTrueUpFalseDown(false)}>-</button>
+                            <button className="graph-btn-gold" onClick={() => handleX5ChangeTrueUpFalseDown(true)}>+</button>
+                            <button className="graph-btn-gold" onClick={() => handleX5ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
                             <p className="scalar-tag"> X6</p>
-                            <button onClick={() => handleX6ChangeTrueUpFalseDown(true)}>+</button>
-                            <button onClick={() => handleX6ChangeTrueUpFalseDown(false)}>-</button>
+                            <button className="graph-btn-gold" onClick={() => handleX6ChangeTrueUpFalseDown(true)}>+</button>
+                            <button className="graph-btn-gold" onClick={() => handleX6ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                         </div>
                         {/* Y BUTTONS */}
                         <div className="scalar-column-right">
                           <div className="scalar-pair">
                             <p className="scalar-tag"> Y1</p>
-                            <button onClick={() => handleY1ChangeTrueUpFalseDown(true)}>+</button>
-                            <button onClick={() => handleY1ChangeTrueUpFalseDown(false)}>-</button>
+                            <button className="graph-btn-gold" onClick={() => handleY1ChangeTrueUpFalseDown(true)}>+</button>
+                            <button className="graph-btn-gold" onClick={() => handleY1ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
                             <p className="scalar-tag"> Y2</p>
-                            <button onClick={() => handleY2ChangeTrueUpFalseDown(true)}>+</button>
-                            <button onClick={() => handleY2ChangeTrueUpFalseDown(false)}>-</button>
+                            <button className="graph-btn-gold" onClick={() => handleY2ChangeTrueUpFalseDown(true)}>+</button>
+                            <button className="graph-btn-gold" onClick={() => handleY2ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
                             <p className="scalar-tag"> Y3</p>
-                            <button onClick={() => handleY3ChangeTrueUpFalseDown(true)}>+</button>
-                            <button onClick={() => handleY3ChangeTrueUpFalseDown(false)}>-</button>
+                            <button className="graph-btn-gold" onClick={() => handleY3ChangeTrueUpFalseDown(true)}>+</button>
+                            <button className="graph-btn-gold" onClick={() => handleY3ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
                             <p className="scalar-tag"> Y4</p>
-                            <button onClick={() => handleY4ChangeTrueUpFalseDown(true)}>+</button>
-                            <button onClick={() => handleY4ChangeTrueUpFalseDown(false)}>-</button>
+                            <button className="graph-btn-gold" onClick={() => handleY4ChangeTrueUpFalseDown(true)}>+</button>
+                            <button className="graph-btn-gold" onClick={() => handleY4ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
                             <p className="scalar-tag"> Y5</p>
-                            <button onClick={() => handleY5ChangeTrueUpFalseDown(true)}>+</button>
-                            <button onClick={() => handleY5ChangeTrueUpFalseDown(false)}>-</button>
+                            <button className="graph-btn-gold" onClick={() => handleY5ChangeTrueUpFalseDown(true)}>+</button>
+                            <button className="graph-btn-gold" onClick={() => handleY5ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                           <div className="scalar-pair">
                             <p className="scalar-tag"> Y6</p>
-                            <button onClick={() => handleY6ChangeTrueUpFalseDown(true)}>+</button>
-                            <button onClick={() => handleY6ChangeTrueUpFalseDown(false)}>-</button>
+                            <button className="graph-btn-gold" onClick={() => handleY6ChangeTrueUpFalseDown(true)}>+</button>
+                            <button className="graph-btn-gold" onClick={() => handleY6ChangeTrueUpFalseDown(false)}>-</button>
                           </div>
                         </div>
 
@@ -398,28 +391,28 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
                       <br></br>
                     <h3 className="subsection-heading codystar-light">Colour toggles 🖌️</h3>
                     <input type="color" onChange={() => handleColourChange(event?.target.value)}></input>
-                    <button onClick={() => toggleRainbowMode()}>{rainbowMode ? ("Rainbow off"): ("Rainbow on")}</button>
-                    <button onClick={() => toggleBackground()}>{canvasBackground === true? ("Blue canvas"): ("Grey canvas")}</button>
+                    <button className="graph-btn-gold" onClick={() => toggleRainbowMode()}>{rainbowMode ? ("Rainbow off"): ("Rainbow on")}</button>
+                    <button className="graph-btn-gold" onClick={() => toggleBackground()}>{canvasBackground === true? ("Blue canvas"): ("Grey canvas")}</button>
 
                     <div className="button-container">
                     <br></br>
                     <h3 className="subsection-heading codystar-light">Increment speed ⏸️</h3>
-                    <button className="stop-button" onClick={() => handleIncrementChange(0)}>S</button>
-                      <button onClick={() => handleIncrementChange(0.000001)}>1</button>
-                      <button onClick={() => handleIncrementChange(0.000005)}>2</button>
-                      <button onClick={() => handleIncrementChange(0.00005)}>3</button>
-                      <button onClick={() => handleIncrementChange(0.0001)}>4</button>
-                      <button onClick={() => handleIncrementChange(0.0004)}>5</button>
-                      <button onClick={() => handleIncrementChange(0.0008)}>6</button>
-                      <button onClick={() => handleIncrementChange(0.0011)}>7</button>
-                      <button onClick={() => handleIncrementChange(0.0015)}>8</button>
-                      <button onClick={() => handleIncrementChange(0.004)}>9</button>
-                      <button onClick={() => handleIncrementChange(0.008)}>10</button>
+                    <button className="graph-btn-gold stop-button" onClick={() => handleIncrementChange(0)}>S</button>
+                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.000001)}>1</button>
+                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.000005)}>2</button>
+                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.00005)}>3</button>
+                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0001)}>4</button>
+                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0004)}>5</button>
+                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0008)}>6</button>
+                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0011)}>7</button>
+                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0015)}>8</button>
+                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.004)}>9</button>
+                      <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.008)}>10</button>
                       <br></br>
                       <br></br>
                       <h3 className="subsection-heading codystar-light">Restart / reset 🔄</h3>
-                        <button onClick={handleRestartAnimation}>Restart Animation</button>
-                        <button onClick={handleResetToDefaults}>Reset to defaults</button>
+                        <button className="graph-btn-gold" onClick={handleRestartAnimation}>Restart Animation</button>
+                        <button className="graph-btn-gold" onClick={handleResetToDefaults}>Reset to defaults</button>
                     </div>
                   </div>
                 </div>  
