@@ -13,12 +13,14 @@
     box-sizing: border-box
 }
 
-
+.makeyourown-container {
+    background-color: rgb(7, 174, 225)
+}
 
 /* MEDIA QUERIES  */
 
-/* @media (min-width: 1400px) { */
-    /* .graph-container-grid { */
-        /* grid-template-columns: 1fr 1fr; */
-    /* } */
-/* } */
+@media (min-width: 1400px) {
+    .graph-container-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
