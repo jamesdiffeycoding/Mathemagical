@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './graph.css';
 import { coloursArray } from './rainbowhelper';
-import { screenSizeVariables,getAdjustedCanvasWidth } from './screensizescalars';
+import { screenSizeVariables,getAdjustedCanvasWidth, getAdjustedXYScalar} from './screensizescalars';
 
 type GraphMakeYourOwnProps = {
   graphTitle: string;
@@ -76,8 +76,9 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
       // X AND Y EQUATIONS _________________________________________________
       const realPart = x1Mod * (Math.sin(theta)) + x2Mod * (Math.sin(Math.PI*theta)) + x3Mod * (Math.cos(theta)) + x4Mod * (Math.cos(Math.PI*theta)) + x5Mod * (Math.tan(theta)) + x6Mod * (Math.tan(Math.PI*theta)) 
       const imagPart = y1Mod * (Math.sin(theta)) + y2Mod * (Math.sin(Math.PI*theta)) + y3Mod * (Math.cos(theta)) + y4Mod * (Math.cos(Math.PI*theta)) + y5Mod * (Math.tan(theta)) + y6Mod * (Math.tan(Math.PI*theta)) 
-      setX(centerX + realPart * 80)
-      setY(centerY + imagPart * 80)
+      const XYScalar: number = getAdjustedXYScalar(canvasWidth)
+      setX(centerX + realPart * XYScalar)
+      setY(centerY + imagPart * XYScalar)
       ctx.beginPath();
       ctx.arc(x, y, lineThickness, 0, 2 * Math.PI);
       

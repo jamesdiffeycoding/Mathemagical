@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './graph.css';
 import { coloursArray } from './rainbowhelper';
-import { screenSizeVariables, getAdjustedCanvasWidth } from './screensizescalars';
+import { screenSizeVariables,getAdjustedCanvasWidth, getAdjustedXYScalar} from './screensizescalars';
 type GraphWhatDoYouSee = {
   graphTitle: string;
 };
@@ -54,8 +54,9 @@ export default function GraphWhatDoYouSee({ graphTitle }: GraphWhatDoYouSee) {
     function drawNextFrame() {
       const realPart = xModification* Math.cos(theta) + Math.cos(Math.PI * theta);
       const imagPart = 1.8* Math.sin(theta) 
-      const x = centerX + realPart * 80;
-      const y = centerY + imagPart * 80;
+      const XYScalar: number = getAdjustedXYScalar(canvasWidth)
+      const x = centerX + realPart * XYScalar;
+      const y = centerY + imagPart * XYScalar;
       ctx.beginPath();
       ctx.arc(x, y, lineThickness, 0, 2 * Math.PI);
       
