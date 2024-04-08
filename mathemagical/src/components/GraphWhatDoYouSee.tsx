@@ -38,12 +38,17 @@ export default function GraphWhatDoYouSee({ graphTitle }: GraphWhatDoYouSee) {
     if (canvasWidth !== window.innerWidth) {
       //@ts-expect-error canvas will be defined
       canvas.width = getAdjustedCanvasWidth(canvasWidth)
+      //@ts-expect-error canvas will be defined
+      canvas.height = canvas.width
     }
     if(firstLoad == true ) { 
       //@ts-expect-error canvas will be defined
       canvas.width =getAdjustedCanvasWidth(canvasWidth)
+      //@ts-expect-error canvas will be defined
+      canvas.height = canvas.width
       setFirstLoad(false)
     }
+
     canvas=canvasRef.current
     //@ts-expect-error canvas will be defined
     const ctx = canvas.getContext('2d');

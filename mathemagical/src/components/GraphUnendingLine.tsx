@@ -38,10 +38,14 @@ export default function GraphUnendingLine({ graphTitle }: GraphUnendingLineProps
     if (canvasWidth !== window.innerWidth) {
       //@ts-expect-error canvas will be defined
       canvas.width = getAdjustedCanvasWidth(canvasWidth)
+      //@ts-expect-error canvas will be defined
+      canvas.height = canvas.width
     }
     if(firstLoad == true ) { 
       //@ts-expect-error canvas will be defined
       canvas.width =getAdjustedCanvasWidth(canvasWidth)
+      //@ts-expect-error canvas will be defined
+      canvas.height = canvas.width
       setFirstLoad(false)
     }
 

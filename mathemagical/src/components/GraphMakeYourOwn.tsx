@@ -57,12 +57,17 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
     if (canvasWidth !== window.innerWidth) {
       //@ts-expect-error canvas will be defined
       canvas.width = getAdjustedCanvasWidth(canvasWidth)
+      //@ts-expect-error canvas will be defined
+      canvas.height = canvas.width
     }
     if(firstLoad == true ) { 
       //@ts-expect-error canvas will be defined
       canvas.width =getAdjustedCanvasWidth(canvasWidth)
+      //@ts-expect-error canvas will be defined
+      canvas.height = canvas.width
       setFirstLoad(false)
     }
+
 
     //@ts-expect-error canvas will be defined
     const ctx = canvas.getContext('2d');
