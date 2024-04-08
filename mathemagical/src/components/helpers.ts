@@ -1,15 +1,11 @@
-interface ScreenSizeVariables {
-  scalarForScreenOver1400px: number;
-  scalarForScreen800to1400px: number;
-  scalarForScreenLessThan800px: number;
+interface global {
   thetaInc: number;
+  lineThickness: number;
 }
 
-export const screenSizeVariables: ScreenSizeVariables = {
-  scalarForScreenOver1400px: 0.2,
-  scalarForScreen800to1400px: 0.5,
-  scalarForScreenLessThan800px: 0.8,
+export const global: global = {
   thetaInc: 0.001,
+  lineThickness: 1,
 };
 
 export function getAdjustedCanvasWidth (canvasWidth: number) {
@@ -39,5 +35,23 @@ export function getAdjustedXYScalar (canvasWidth: number) {
     }
 
   return adjustedXYScalar
+
+}
+
+
+export function tweakParameterByPointTwo (value: number, direction: string){
+  if (direction == "increase") {
+    value += 0.2;
+    if (value >= 2) {
+      value = 2;
+    }
+  }
+  if (direction == "decrease") {
+    value -= 0.2;
+    if (value <= -2) {
+      value = -2;
+    }
+  }
+  return value;
 
 }

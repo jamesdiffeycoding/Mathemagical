@@ -1,23 +1,19 @@
-import GraphUnendingLine from './GraphUnendingLine';
-import GraphSpirograph from './GraphMakeYourOwn';
-import GraphWhatDoYouSee from './GraphWhatDoYouSee';
+import GraphOne from './GraphOne';
+import GraphTwo from './GraphTwo';
+import GraphZThree from './GraphZThree';
 
 import './graphcontainer.css'
 
 
 export default function GraphContainer() {
-  const graphOneTitle: string = 'The Unending Line'
-  const graphTwoTitle: string = 'What do you percieve?'
-  const graphMakeYourOwn: string = 'Design your own'
-
   return (
     <>
       <div className="graph-container-grid">
-        <GraphUnendingLine graphTitle={graphOneTitle}></GraphUnendingLine>
-        <GraphWhatDoYouSee graphTitle={graphTwoTitle}></GraphWhatDoYouSee>
+        <GraphOne></GraphOne>
+        <GraphTwo></GraphTwo>
       </div> 
       <div className="makeyourown-container">
-        <GraphSpirograph graphTitle={graphMakeYourOwn}></GraphSpirograph>
+        <GraphZThree></GraphZThree>
       </div>
     </>
 

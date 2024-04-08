@@ -1,49 +1,72 @@
+// IMPORTS -------------------------------------------------------------------------------------------------------- 
 import { useState, useEffect, useRef } from 'react';
+import { coloursArray } from './rainbowRGBvalues';
+import { global, getAdjustedCanvasWidth, getAdjustedXYScalar} from './helpers';
 import './graph.css';
-import { coloursArray } from './rainbowhelper';
-import { screenSizeVariables,getAdjustedCanvasWidth, getAdjustedXYScalar} from './screensizescalars';
-type GraphWhatDoYouSee = {
-  graphTitle: string;
-};
 
-export default function GraphWhatDoYouSee({ graphTitle }: GraphWhatDoYouSee) {
-  const canvasRef = useRef(null);
-  const [theta, setTheta] = useState(0);
-  const lineThickness = 1
-  const [thetaIncrement, setThetaIncrement] = useState(screenSizeVariables.thetaInc);
-  const [graphColor, setGraphColor] = useState('#ffffff');
-  const [colorIndex, setColorIndex] = useState(0);
-  const [rainbowMode, setRainbowMode] = useState(false)
-  const [colorCount, setColorCount] = useState(0)
-  const [canvasBackground, setCanvasBackground]= useState(true)
-  const [firstLoad, setFirstLoad] = useState(true)
 
-  function handleIncrementChange (newIncrement: number) {
-    setThetaIncrement(newIncrement);
-  }
-  const [xModification, setXModification] = useState(1.2)
 
-  // SCREEN WIDTH
-  const [canvasWidth, setCanvasWidth] = useState(window.innerWidth)
-  function handleResize () { 
-    setCanvasWidth(window.innerWidth)
-  }
-  useEffect(() => {
+
+// COMPONENT -------------------------------------------------------------------------------------------------------- 
+export default function GraphTwo() {
+  // 🔗 SETUP CODE SHARED WITH OTHER GRAPHS- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    // (1) CANVAS -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+      // ... REFERENCE
+      const canvasRef = useRef(null);
+
+      // ... STATE MANAGEMENT
+      const [theta, setTheta] = useState(0);
+      const [thetaIncrement, setThetaIncrement] = useState(global.thetaInc);
+      
+      // ... FUNCTIONS
+      function handleThetaIncrement (newIncrement: number) {
+        setThetaIncrement(newIncrement);
+      }
+
+    // (2) COLOURS -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+      // ... STATE MANAGEMENT
+      const [graphColor, setGraphColor] = useState('#ffffff');
+      const [rainbowMode, setRainbowMode] = useState(false);
+      const [colorIndex, setColorIndex] = useState(0);
+      const [colorCount, setColorCount] = useState(0);
+      const [canvasBackground, setCanvasBackground] = useState(true)
+    
+    // (3) RESPONSIVE SIZING -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+      // ... STATE MANAGEMENT
+      const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+      const [firstLoad, setFirstLoad] = useState(true)
+      
+      // ... FUNCTIONS
+      function handleScreenResize () { 
+        setScreenWidth(window.innerWidth)
+      }  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - 
+
+
+
+  // ⭐ UNIQUE SETUP CODE NOT SHARED WITH OTHER GRAPHS
+    // (1) SCALE FACTOR -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+      // ... STATE MANAGEMENT
+      const [xModification, setXModification] = useState(1.2)
+
+
+
+    useEffect(() => {
     let canvas = canvasRef.current;
     let animationFrameId: number;
 
     // MANIPULATE CANVAS WIDTH
-    window.addEventListener('resize', handleResize)
-    window.addEventListener('orientationchange', handleResize)
-    if (canvasWidth !== window.innerWidth) {
+    window.addEventListener('resize', handleScreenResize)
+    window.addEventListener('orientationchange', handleScreenResize)
+    if (screenWidth !== window.innerWidth) {
       //@ts-expect-error canvas will be defined
-      canvas.width = getAdjustedCanvasWidth(canvasWidth)
+      canvas.width = getAdjustedCanvasWidth(screenWidth)
       //@ts-expect-error canvas will be defined
       canvas.height = canvas.width
     }
     if(firstLoad == true ) { 
       //@ts-expect-error canvas will be defined
-      canvas.width =getAdjustedCanvasWidth(canvasWidth)
+      canvas.width =getAdjustedCanvasWidth(screenWidth)
       //@ts-expect-error canvas will be defined
       canvas.height = canvas.width
       setFirstLoad(false)
@@ -59,11 +82,11 @@ export default function GraphWhatDoYouSee({ graphTitle }: GraphWhatDoYouSee) {
     function drawNextFrame() {
       const realPart = xModification* Math.cos(theta) + Math.cos(Math.PI * theta);
       const imagPart = 1.8* Math.sin(theta) 
-      const XYScalar: number = getAdjustedXYScalar(canvasWidth)
+      const XYScalar: number = getAdjustedXYScalar(screenWidth)
       const x = centerX + realPart * XYScalar;
       const y = centerY + imagPart * XYScalar;
       ctx.beginPath();
-      ctx.arc(x, y, lineThickness, 0, 2 * Math.PI);
+      ctx.arc(x, y, global.lineThickness, 0, 2 * Math.PI);
       
       //  rainbow colour augmentation if mode turned on
       if(rainbowMode){
@@ -90,9 +113,9 @@ export default function GraphWhatDoYouSee({ graphTitle }: GraphWhatDoYouSee) {
     
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', handleScreenResize)
     };
-  }, [firstLoad, canvasWidth, colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor, xModification]);
+  }, [firstLoad, screenWidth, colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor, xModification]);
 
   function resetColourToWhite () {
     setGraphColor('#ffffff')
@@ -134,7 +157,7 @@ export default function GraphWhatDoYouSee({ graphTitle }: GraphWhatDoYouSee) {
   return (
     <div className="graph-container-centering">
               <div className="graph-container-item">
-                <h2 className="graph-title codystar-regular">{graphTitle || "Graph name"}</h2>
+                <h2 className="graph-title codystar-regular">"What do you see?"</h2>
                       <canvas
                         ref={canvasRef}
                         className="graph-canvas"
@@ -161,17 +184,17 @@ export default function GraphWhatDoYouSee({ graphTitle }: GraphWhatDoYouSee) {
         <div className="button-container">
                     <br></br>
                     <h3 className="subsection-heading codystar-light">Increment speed ⏸️ </h3>
-                      <button className="graph-btn-blue stop-button" onClick={() => handleIncrementChange(0)}>S</button>
-                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.000001)}>1</button>
-                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.000005)}>2</button>
-                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.00005)}>3</button>
-                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.0001)}>4</button>
-                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.0004)}>5</button>
-                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.0008)}>6</button>
-                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.0011)}>7</button>
-                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.0015)}>8</button>
-                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.004)}>9</button>
-                      <button className="graph-btn-blue" onClick={() => handleIncrementChange(0.008)}>10</button>
+                      <button className="graph-btn-blue stop-button" onClick={() => handleThetaIncrement(0)}>S</button>
+                      <button className="graph-btn-blue" onClick={() => handleThetaIncrement(0.000001)}>1</button>
+                      <button className="graph-btn-blue" onClick={() => handleThetaIncrement(0.000005)}>2</button>
+                      <button className="graph-btn-blue" onClick={() => handleThetaIncrement(0.00005)}>3</button>
+                      <button className="graph-btn-blue" onClick={() => handleThetaIncrement(0.0001)}>4</button>
+                      <button className="graph-btn-blue" onClick={() => handleThetaIncrement(0.0004)}>5</button>
+                      <button className="graph-btn-blue" onClick={() => handleThetaIncrement(0.0008)}>6</button>
+                      <button className="graph-btn-blue" onClick={() => handleThetaIncrement(0.0011)}>7</button>
+                      <button className="graph-btn-blue" onClick={() => handleThetaIncrement(0.0015)}>8</button>
+                      <button className="graph-btn-blue" onClick={() => handleThetaIncrement(0.004)}>9</button>
+                      <button className="graph-btn-blue" onClick={() => handleThetaIncrement(0.008)}>10</button>
                       <br></br>
                       <br></br>
 

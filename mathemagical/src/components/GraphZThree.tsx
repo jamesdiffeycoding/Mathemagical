@@ -1,50 +1,88 @@
+// IMPORTS -------------------------------------------------------------------------------------------------------- 
 import { useState, useEffect, useRef } from 'react';
+import { coloursArray } from './rainbowRGBvalues';
+import { global ,getAdjustedCanvasWidth, getAdjustedXYScalar, tweakParameterByPointTwo} from './helpers';
 import './graph.css';
-import { coloursArray } from './rainbowhelper';
-import { screenSizeVariables,getAdjustedCanvasWidth, getAdjustedXYScalar} from './screensizescalars';
 
-type GraphMakeYourOwnProps = {
-  graphTitle: string;
-};
 
-export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) {
-  const canvasRef = useRef(null);
-  const [theta, setTheta] = useState(0);
-  const lineThickness = 1
-  const [thetaIncrement, setThetaIncrement] = useState(screenSizeVariables.thetaInc);
-  const [graphColor, setGraphColor] = useState('#ffffff');
-  const [colorIndex, setColorIndex] = useState(0);
-  const [rainbowMode, setRainbowMode] = useState(true)
-  const [colorCount, setColorCount] = useState(0)
-  const [canvasBackground, setCanvasBackground]= useState(false)
-  const [firstLoad, setFirstLoad] = useState(true)
 
-  // COORDINATES
-  const [x, setX] = useState(0)
-  const [y, setY] = useState(0)
-  // SCREEN WIDTH
-  const [canvasWidth, setCanvasWidth] = useState(window.innerWidth)
-  function handleResize () { 
-    setCanvasWidth(window.innerWidth)
-  }
 
-  
+// COMPONENT -------------------------------------------------------------------------------------------------------- 
+export default function GraphZThree() {
+  // 🔗 SETUP CODE SHARED WITH OTHER GRAPHS- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    // (1) CANVAS -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+      // ... REFERENCE
+      const canvasRef = useRef(null);
+
+      // ... STATE MANAGEMENT
+      const [theta, setTheta] = useState(0);
+      const [thetaIncrement, setThetaIncrement] = useState(global.thetaInc);
+      
+      // ... FUNCTIONS
+      function handleThetaIncrement (newIncrement: number) {
+        setThetaIncrement(newIncrement);
+      }
+
+    // (2) COLOURS -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+      // ... STATE MANAGEMENT
+      const [graphColor, setGraphColor] = useState('#ffffff');
+      const [rainbowMode, setRainbowMode] = useState(false);
+      const [colorIndex, setColorIndex] = useState(0);
+      const [colorCount, setColorCount] = useState(0);
+      const [canvasBackground, setCanvasBackground] = useState(true)
     
+    // (3) RESPONSIVE SIZING -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+      // ... STATE MANAGEMENT
+      const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+      const [firstLoad, setFirstLoad] = useState(true)
+      
+      // ... FUNCTIONS
+      function handleScreenResize () { 
+        setScreenWidth(window.innerWidth)
+      }  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - -   
+  // ⭐ UNIQUE SETUP CODE NOT SHARED WITH OTHER GRAPHS
+    // (1) TWEAKING GRAPH PARAMETERS
+      // ... STATE MANAGEMENT
+      const [x1Mod, setX1Mod] = useState(1)
+      const [x2Mod, setX2Mod] = useState(0)
+      const [x3Mod, setX3Mod] = useState(0)
+      const [x4Mod, setX4Mod] = useState(0)
+      const [x5Mod, setX5Mod] = useState(0)
+      const [x6Mod, setX6Mod] = useState(0)
+      const [y1Mod, setY1Mod] = useState(0)
+      const [y2Mod, setY2Mod] = useState(0)
+      const [y3Mod, setY3Mod] = useState(1)
+      const [y4Mod, setY4Mod] = useState(0)
+      const [y5Mod, setY5Mod] = useState(0)
+      const [y6Mod, setY6Mod] = useState(0)
 
-  // SCALAR MODIFICATIONS _______________________________________________
-  const [x1Mod, setX1Mod] = useState(1)
-  const [x2Mod, setX2Mod] = useState(0)
-  const [x3Mod, setX3Mod] = useState(0)
-  const [x4Mod, setX4Mod] = useState(0)
-  const [x5Mod, setX5Mod] = useState(0)
-  const [x6Mod, setX6Mod] = useState(0)
-  const [y1Mod, setY1Mod] = useState(1)
-  const [y2Mod, setY2Mod] = useState(0)
-  const [y3Mod, setY3Mod] = useState(0)
-  const [y4Mod, setY4Mod] = useState(0)
-  const [y5Mod, setY5Mod] = useState(0)
-  const [y6Mod, setY6Mod] = useState(0)
-  
+      // ... FUNCTION
+        // SCALAR MODIFICATION FUNCTION
+        function handleCoefficientTweak(coefficient: string, direction: string) {
+          switch (coefficient) {
+            case "x1": setX1Mod(tweakParameterByPointTwo(x1Mod, direction)); break;
+            case "x2": setX2Mod(tweakParameterByPointTwo(x2Mod, direction)); break;
+            case "x3": setX3Mod(tweakParameterByPointTwo(x3Mod, direction)); break;
+            case "x4": setX4Mod(tweakParameterByPointTwo(x4Mod, direction)); break;
+            case "x5": setX5Mod(tweakParameterByPointTwo(x5Mod, direction)); break;
+            case "x6": setX6Mod(tweakParameterByPointTwo(x6Mod, direction)); break;
+            case "y1": setY1Mod(tweakParameterByPointTwo(y1Mod, direction)); break;
+            case "y2": setY2Mod(tweakParameterByPointTwo(y2Mod, direction)); break;
+            case "y3": setY3Mod(tweakParameterByPointTwo(y3Mod, direction)); break;
+            case "y4": setY4Mod(tweakParameterByPointTwo(y4Mod, direction)); break;
+            case "y5": setY5Mod(tweakParameterByPointTwo(y5Mod, direction)); break;
+            case "y6": setY6Mod(tweakParameterByPointTwo(y6Mod, direction)); break;
+            default: console.log("Invalid coefficient passed to handleCoefficientTweak"); break;
+            }
+          }
+
+    // (2) TRACKING X AND Y COORDINATES FOR DISPLAY
+      // ... STATE MANAGEMENT
+      const [x, setX] = useState(0)
+      const [y, setY] = useState(0)
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - -   
+
   
   // DRAW THE CANVAS _______________________________________________________
   useEffect(() => {
@@ -52,17 +90,17 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
 
 
     // MANIPULATE CANVAS WIDTH
-    window.addEventListener('resize', handleResize)
-    window.addEventListener('orientationchange', handleResize)
-    if (canvasWidth !== window.innerWidth) {
+    window.addEventListener('resize', handleScreenResize)
+    window.addEventListener('orientationchange', handleScreenResize)
+    if (screenWidth !== window.innerWidth) {
       //@ts-expect-error canvas will be defined
-      canvas.width = getAdjustedCanvasWidth(canvasWidth)
+      canvas.width = getAdjustedCanvasWidth(screenWidth)
       //@ts-expect-error canvas will be defined
       canvas.height = canvas.width
     }
     if(firstLoad == true ) { 
       //@ts-expect-error canvas will be defined
-      canvas.width =getAdjustedCanvasWidth(canvasWidth)
+      canvas.width =getAdjustedCanvasWidth(screenWidth)
       //@ts-expect-error canvas will be defined
       canvas.height = canvas.width
       setFirstLoad(false)
@@ -81,11 +119,11 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
       // X AND Y EQUATIONS _________________________________________________
       const realPart = x1Mod * (Math.sin(theta)) + x2Mod * (Math.sin(Math.PI*theta)) + x3Mod * (Math.cos(theta)) + x4Mod * (Math.cos(Math.PI*theta)) + x5Mod * (Math.tan(theta)) + x6Mod * (Math.tan(Math.PI*theta)) 
       const imagPart = y1Mod * (Math.sin(theta)) + y2Mod * (Math.sin(Math.PI*theta)) + y3Mod * (Math.cos(theta)) + y4Mod * (Math.cos(Math.PI*theta)) + y5Mod * (Math.tan(theta)) + y6Mod * (Math.tan(Math.PI*theta)) 
-      const XYScalar: number = getAdjustedXYScalar(canvasWidth)
+      const XYScalar: number = getAdjustedXYScalar(screenWidth)
       setX(centerX + realPart * XYScalar)
       setY(centerY + imagPart * XYScalar)
       ctx.beginPath();
-      ctx.arc(x, y, lineThickness, 0, 2 * Math.PI);
+      ctx.arc(x, y, global.lineThickness, 0, 2 * Math.PI);
       
       //  rainbow colour augmentation if mode turned on
       if(rainbowMode){
@@ -113,132 +151,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [canvasWidth, firstLoad, x, y, colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor, x1Mod, x2Mod, x3Mod,x4Mod,x5Mod,x6Mod, y1Mod, y2Mod, y3Mod, y4Mod, y5Mod,y6Mod]);
-
-
-
-  // FUNCTIONS _________________________________________________________________________________
-  // SCALAR MODIFICATION FUNCTIONS
-  function handleX1ChangeTrueUpFalseDown(direction: boolean) {
-    if (direction && x1Mod<=2) {
-      setX1Mod(prevValue => prevValue + 0.1)
-    } else if (x1Mod == 2) {
-      // do nothing
-    } else {
-      if (x1Mod >= -1.91)
-        setX1Mod(prevValue => prevValue - 0.1);
-    }
-  }
-  function handleX2ChangeTrueUpFalseDown(direction: boolean) {
-    if (direction && x2Mod<=2) {
-      setX2Mod(prevValue => prevValue + 0.1)
-    } else if (x2Mod == 2) {
-      // do nothing
-    } else {
-      if (x2Mod >= -1.91)
-        setX2Mod(prevValue => prevValue - 0.1);
-    }
-  }
-  function handleX3ChangeTrueUpFalseDown(direction: boolean) {
-    if (direction && x3Mod <= 2) {
-      setX3Mod(prevValue => prevValue + 0.1);
-    } else if (x3Mod === 2) {
-      // do nothing
-    } else {
-      if (x3Mod >= -1.91)
-        setX3Mod(prevValue => prevValue - 0.1);
-    }
-  }
-  function handleX4ChangeTrueUpFalseDown(direction: boolean) {
-    if (direction && x4Mod <= 2) {
-      setX4Mod(prevValue => prevValue + 0.1);
-    } else if (x4Mod === 2) {
-      // do nothing
-    } else {
-      if (x4Mod >= -1.91)
-        setX4Mod(prevValue => prevValue - 0.1);
-    }
-  }
-  function handleX5ChangeTrueUpFalseDown(direction: boolean) {
-    if (direction && x5Mod <= 2) {
-      setX5Mod(prevValue => prevValue + 0.1);
-    } else if (x5Mod === 2) {
-      // do nothing
-    } else {
-      if (x5Mod >= -1.91)
-        setX5Mod(prevValue => prevValue - 0.1);
-    }
-  }
-  function handleX6ChangeTrueUpFalseDown(direction: boolean) {
-    if (direction && x6Mod <= 2) {
-      setX6Mod(prevValue => prevValue + 0.1);
-    } else if (x6Mod === 2) {
-      // do nothing
-    } else {
-      if (x6Mod >= -1.91)
-        setX6Mod(prevValue => prevValue - 0.1);
-    }
-  }
-  function handleY1ChangeTrueUpFalseDown(direction: boolean) {
-    if (direction && y1Mod <= 2) {
-      setY1Mod(prevValue => prevValue + 0.1);
-    } else if (y1Mod === 2) {
-      // do nothing
-    } else {
-      if (y1Mod >= -1.91)
-        setY1Mod(prevValue => prevValue - 0.1);
-    }
-  }
-  function handleY2ChangeTrueUpFalseDown(direction: boolean) {
-    if (direction && y2Mod <= 2) {
-      setY2Mod(prevValue => prevValue + 0.1);
-    } else if (y2Mod === 2) {
-      // do nothing
-    } else {
-      if (y2Mod >= -1.91)
-        setY2Mod(prevValue => prevValue - 0.1);
-    }
-  }
-  function handleY3ChangeTrueUpFalseDown(direction: boolean) {
-    if (direction && y3Mod <= 2) {
-      setY3Mod(prevValue => prevValue + 0.1);
-    } else if (y3Mod === 2) {
-      // do nothing
-    } else {
-      if (y3Mod >= -1.91)
-        setY3Mod(prevValue => prevValue - 0.1);
-    }
-  }
-  function handleY4ChangeTrueUpFalseDown(direction: boolean) {
-    if (direction && y4Mod <= 2) {
-      setY4Mod(prevValue => prevValue + 0.1);
-    } else if (y4Mod === 2) {
-      // do nothing
-    } else {
-      if (y4Mod >= -1.91)
-        setY4Mod(prevValue => prevValue - 0.1);
-    }
-  }
-  function handleY5ChangeTrueUpFalseDown(direction: boolean) {
-    if (direction && y5Mod <= 2) {
-      setY5Mod(prevValue => prevValue + 0.1);
-    } else if (y5Mod === 2) {
-      // do nothing
-    } else {
-      if (y5Mod >= -1.91)
-        setY5Mod(prevValue => prevValue - 0.1);
-      }
-  }
-  function handleY6ChangeTrueUpFalseDown(direction: boolean) {
-    if (direction && y6Mod <= 2) {
-      setY6Mod(prevValue => prevValue + 0.1);
-    } else if (y6Mod === 2) {
-      // do nothing
-    } else {
-      if (y6Mod >= -1.91)
-      setY6Mod(prevValue => prevValue - 0.1);
-    }
-  }
+  }, [screenWidth, firstLoad, x, y, colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor, x1Mod, x2Mod, x3Mod,x4Mod,x5Mod,x6Mod, y1Mod, y2Mod, y3Mod, y4Mod, y5Mod,y6Mod]);
 
 
   // COLOUR FUNCTIONS __________________________________________________________________________
@@ -265,10 +178,6 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
     setRainbowMode(false)
   }
   
-  // SPEED FUNCTIONS ______________________________________________________________________________
-  function handleIncrementChange (newIncrement: number) {
-    setThetaIncrement(newIncrement);
-  }
 
   // RESET FUNCTIONS ______________________________________________________________________________
   function handleRestartAnimation () {
@@ -310,7 +219,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
                     <div className="makeyourown-grid-leftcol">
 
 
-                                        <h2 className="graph-title codystar-regular makeyourown-title">{graphTitle || "Graph name"}</h2>
+                                        <h2 className="graph-title codystar-regular makeyourown-title">Design your own</h2>
                                               <canvas
                                                 ref={canvasRef}
                                                 className="graph-canvas"
@@ -371,33 +280,33 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
                                                   <h3>X</h3>
                                                   <div className="scalar-pair">
                                                     <p className="scalar-tag">sin(θ)</p>
-                                                    <button className="graph-btn-gold" onClick={() => handleX1ChangeTrueUpFalseDown(true)}>+</button>
-                                                    <button className="graph-btn-gold" onClick={() => handleX1ChangeTrueUpFalseDown(false)}>-</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("x1", "increase")}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("x1", "decrease")}>+</button>
                                                   </div>
                                                   <div className="scalar-pair">
                                                     <p className="scalar-tag">sin(πθ)</p>
-                                                    <button className="graph-btn-gold" onClick={() => handleX2ChangeTrueUpFalseDown(true)}>+</button>
-                                                    <button className="graph-btn-gold" onClick={() => handleX2ChangeTrueUpFalseDown(false)}>-</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("x2", "increase")}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("x2", "decrease")}>+</button>
                                                   </div>
                                                   <div className="scalar-pair">
                                                     <p className="scalar-tag">cos(θ)</p>
-                                                    <button className="graph-btn-gold" onClick={() => handleX3ChangeTrueUpFalseDown(true)}>+</button>
-                                                    <button className="graph-btn-gold" onClick={() => handleX3ChangeTrueUpFalseDown(false)}>-</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("x3", "increase")}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("x3", "decrease")}>+</button>
                                                   </div>
                                                   <div className="scalar-pair">
                                                     <p className="scalar-tag">cos(πθ)</p>
-                                                    <button className="graph-btn-gold" onClick={() => handleX4ChangeTrueUpFalseDown(true)}>+</button>
-                                                    <button className="graph-btn-gold" onClick={() => handleX4ChangeTrueUpFalseDown(false)}>-</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("x4", "increase")}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("x4", "decrease")}>+</button>
                                                   </div>
                                                   <div className="scalar-pair">
                                                     <p className="scalar-tag">tan(θ)</p>
-                                                    <button className="graph-btn-gold" onClick={() => handleX5ChangeTrueUpFalseDown(true)}>+</button>
-                                                    <button className="graph-btn-gold" onClick={() => handleX5ChangeTrueUpFalseDown(false)}>-</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("x5", "increase")}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("x5", "decrease")}>+</button>
                                                   </div>
                                                   <div className="scalar-pair">
                                                     <p className="scalar-tag">tan(πθ)</p>
-                                                    <button className="graph-btn-gold" onClick={() => handleX6ChangeTrueUpFalseDown(true)}>+</button>
-                                                    <button className="graph-btn-gold" onClick={() => handleX6ChangeTrueUpFalseDown(false)}>-</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("x6", "increase")}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("x6", "decrease")}>+</button>
                                                   </div>
                                                 </div>
                                                 {/* Y BUTTONS */}
@@ -407,33 +316,33 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
                                                   <div className="scalar-pair">
                                                     
                                                   <p className="scalar-tag">sin(θ)</p>
-                                                    <button className="graph-btn-gold" onClick={() => handleY1ChangeTrueUpFalseDown(true)}>+</button>
-                                                    <button className="graph-btn-gold" onClick={() => handleY1ChangeTrueUpFalseDown(false)}>-</button>
+                                                  <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("y1", "increase")}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("y1", "decrease")}>+</button>
                                                   </div>
                                                   <div className="scalar-pair">
                                                   <p className="scalar-tag">sin(πθ)</p>
-                                                    <button className="graph-btn-gold" onClick={() => handleY2ChangeTrueUpFalseDown(true)}>+</button>
-                                                    <button className="graph-btn-gold" onClick={() => handleY2ChangeTrueUpFalseDown(false)}>-</button>
+                                                  <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("y2", "increase")}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("y2", "decrease")}>+</button>
                                                   </div>
                                                   <div className="scalar-pair">
                                                     <p className="scalar-tag">cos(θ)</p>
-                                                    <button className="graph-btn-gold" onClick={() => handleY3ChangeTrueUpFalseDown(true)}>+</button>
-                                                    <button className="graph-btn-gold" onClick={() => handleY3ChangeTrueUpFalseDown(false)}>-</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("y3", "increase")}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("y3", "decrease")}>+</button>
                                                   </div>
                                                   <div className="scalar-pair">
                                                     <p className="scalar-tag">cos(πθ)</p>
-                                                    <button className="graph-btn-gold" onClick={() => handleY4ChangeTrueUpFalseDown(true)}>+</button>
-                                                    <button className="graph-btn-gold" onClick={() => handleY4ChangeTrueUpFalseDown(false)}>-</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("y4", "increase")}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("y4", "decrease")}>+</button>
                                                   </div>
                                                   <div className="scalar-pair">
                                                     <p className="scalar-tag">tan(θ)</p>
-                                                    <button className="graph-btn-gold" onClick={() => handleY5ChangeTrueUpFalseDown(true)}>+</button>
-                                                    <button className="graph-btn-gold" onClick={() => handleY5ChangeTrueUpFalseDown(false)}>-</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("y5", "increase")}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("y5", "decrease")}>+</button>
                                                   </div>
                                                   <div className="scalar-pair">
                                                     <p className="scalar-tag">tan(πθ)</p>
-                                                    <button className="graph-btn-gold" onClick={() => handleY6ChangeTrueUpFalseDown(true)}>+</button>
-                                                    <button className="graph-btn-gold" onClick={() => handleY6ChangeTrueUpFalseDown(false)}>-</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("y6", "increase")}>+</button>
+                                                    <button className="graph-btn-gold" onClick={() => handleCoefficientTweak("y6", "decrease")}>+</button>
                                                   </div>
                                                 </div>
 
@@ -449,17 +358,17 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
                                             <div className="button-container">
                                             <br></br>
                                             <h3 className="subsection-heading codystar-light">Increment speed ⏸️</h3>
-                                            <button className="graph-btn-gold stop-button" onClick={() => handleIncrementChange(0)}>S</button>
-                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.000001)}>1</button>
-                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.000005)}>2</button>
-                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.00005)}>3</button>
-                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0001)}>4</button>
-                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0004)}>5</button>
-                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0008)}>6</button>
-                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0011)}>7</button>
-                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.0015)}>8</button>
-                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.004)}>9</button>
-                                              <button className="graph-btn-gold" onClick={() => handleIncrementChange(0.008)}>10</button>
+                                            <button className="graph-btn-gold stop-button" onClick={() => handleThetaIncrement(0)}>S</button>
+                                              <button className="graph-btn-gold" onClick={() => handleThetaIncrement(0.000001)}>1</button>
+                                              <button className="graph-btn-gold" onClick={() => handleThetaIncrement(0.000005)}>2</button>
+                                              <button className="graph-btn-gold" onClick={() => handleThetaIncrement(0.00005)}>3</button>
+                                              <button className="graph-btn-gold" onClick={() => handleThetaIncrement(0.0001)}>4</button>
+                                              <button className="graph-btn-gold" onClick={() => handleThetaIncrement(0.0004)}>5</button>
+                                              <button className="graph-btn-gold" onClick={() => handleThetaIncrement(0.0008)}>6</button>
+                                              <button className="graph-btn-gold" onClick={() => handleThetaIncrement(0.0011)}>7</button>
+                                              <button className="graph-btn-gold" onClick={() => handleThetaIncrement(0.0015)}>8</button>
+                                              <button className="graph-btn-gold" onClick={() => handleThetaIncrement(0.004)}>9</button>
+                                              <button className="graph-btn-gold" onClick={() => handleThetaIncrement(0.008)}>10</button>
                                               <br></br>
                                               <br></br>
                                               <h3 className="subsection-heading codystar-light">Restart / reset 🔄</h3>
