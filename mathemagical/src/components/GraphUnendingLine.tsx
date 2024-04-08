@@ -128,7 +128,7 @@ function handleColourChange (value: string) {
   return (
     <div className="graph-container-centering">
               <div className="graph-container-item">
-                <h2 className="graph-title codystar-regular">{graphTitle || "Graph name"}{canvasWidth}- {getAdjustedCanvasWidth(canvasWidth)}</h2>
+                <h2 className="graph-title codystar-regular">{graphTitle || "Graph name"} {canvasWidth}- {getAdjustedCanvasWidth(canvasWidth)}</h2>
                       <canvas
                         ref={canvasRef}
                         className="graph-canvas"
