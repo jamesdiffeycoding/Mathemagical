@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import './graph.css';
 import { coloursArray } from './rainbowhelper';
 
-type GraphOpticLungsProps = {
+type GraphWhatDoYouSee = {
   graphTitle: string;
 };
 
-export default function GraphOpticLungs({ graphTitle }: GraphOpticLungsProps) {
+export default function GraphWhatDoYouSee({ graphTitle }: GraphWhatDoYouSee) {
   const canvasRef = useRef(null);
   const [theta, setTheta] = useState(0);
   const lineThickness = 1

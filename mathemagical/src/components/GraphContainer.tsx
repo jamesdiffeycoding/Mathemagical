@@ -1,6 +1,6 @@
 import GraphUnendingLine from './GraphUnendingLine';
 import GraphSpirograph from './GraphMakeYourOwn';
-import GraphOpticLungs from './GraphOpticLungs';
+import GraphWhatDoYouSee from './GraphWhatDoYouSee';
 
 import './graphcontainer.css'
 
@@ -14,7 +14,7 @@ export default function GraphContainer() {
     <>
       <div className="graph-container-grid">
         <GraphUnendingLine graphTitle={graphOneTitle}></GraphUnendingLine>
-        <GraphOpticLungs graphTitle={graphTwoTitle}></GraphOpticLungs>
+        <GraphWhatDoYouSee graphTitle={graphTwoTitle}></GraphWhatDoYouSee>
       </div> 
       <div className="makeyourown-container">
         <GraphSpirograph graphTitle={graphMakeYourOwn}></GraphSpirograph>
