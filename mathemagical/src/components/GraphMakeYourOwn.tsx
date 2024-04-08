@@ -16,6 +16,10 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
   const [rainbowMode, setRainbowMode] = useState(true)
   const [colorCount, setColorCount] = useState(0)
   const [canvasBackground, setCanvasBackground]= useState(true)
+  // COORDINATES
+  const [x, setX] = useState(0)
+  const [y, setY] = useState(0)
+
   // SCALAR MODIFICATIONS _______________________________________________
   const [x1Mod, setX1Mod] = useState(1)
   const [x2Mod, setX2Mod] = useState(0)
@@ -29,7 +33,6 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
   const [y4Mod, setY4Mod] = useState(0)
   const [y5Mod, setY5Mod] = useState(0)
   const [y6Mod, setY6Mod] = useState(0)
-
   
   
   // DRAW THE CANVAS _______________________________________________________
@@ -47,8 +50,9 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
       // X AND Y EQUATIONS _________________________________________________
       const realPart = x1Mod * (Math.sin(theta)) + x2Mod * (Math.sin(Math.PI*theta)) + x3Mod * (Math.cos(theta)) + x4Mod * (Math.cos(Math.PI*theta)) + x5Mod * (Math.tan(theta)) + x6Mod * (Math.tan(Math.PI*theta)) 
       const imagPart = y1Mod * (Math.sin(theta)) + y2Mod * (Math.sin(Math.PI*theta)) + y3Mod * (Math.cos(theta)) + y4Mod * (Math.cos(Math.PI*theta)) + y5Mod * (Math.tan(theta)) + y6Mod * (Math.tan(Math.PI*theta)) 
-      const x = centerX + realPart * 80;
-      const y = centerY + imagPart * 80;
+      setX(centerX + realPart * 80)
+      setY(centerY + imagPart * 80)
+      console.log(centerX)
       ctx.beginPath();
       ctx.arc(x, y, lineThickness, 0, 2 * Math.PI);
       
@@ -78,7 +82,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor, x1Mod, x2Mod, x3Mod,x4Mod,x5Mod,x6Mod, y1Mod, y2Mod, y3Mod, y4Mod, y5Mod,y6Mod]);
+  }, [x, y, colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor, x1Mod, x2Mod, x3Mod,x4Mod,x5Mod,x6Mod, y1Mod, y2Mod, y3Mod, y4Mod, y5Mod,y6Mod]);
 
 
 
@@ -284,7 +288,13 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
                                                 style={{
                                                   backgroundColor: canvasBackground ? 'rgb(0, 36, 66)' : 'rgb(220, 220, 220)'
                                                 }}
-                                                ></canvas>      
+                                                ></canvas>
+                                        <div>Theta: {theta.toFixed(2)}</div>
+                                        <div>X: {((x-250)/80).toFixed(2)}</div>
+                                        <div>Y:  {((y-250)/80).toFixed(2)}</div>
+
+                                        {/* <div> {center}</div> */}
+
                         </div>
                         <div className="makeyourown-grid-rightcol">
 
