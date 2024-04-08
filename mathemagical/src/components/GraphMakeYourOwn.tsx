@@ -16,7 +16,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
   const [colorIndex, setColorIndex] = useState(0);
   const [rainbowMode, setRainbowMode] = useState(true)
   const [colorCount, setColorCount] = useState(0)
-  const [canvasBackground, setCanvasBackground]= useState(true)
+  const [canvasBackground, setCanvasBackground]= useState(false)
   const [firstLoad, setFirstLoad] = useState(true)
 
   // COORDINATES
