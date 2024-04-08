@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './graph.css';
 import { coloursArray } from './rainbowhelper';
-
+import { screenSizeVariables, getAdjustedCanvasWidth } from './screensizescalars';
 type GraphWhatDoYouSee = {
   graphTitle: string;
 };
@@ -10,29 +10,47 @@ export default function GraphWhatDoYouSee({ graphTitle }: GraphWhatDoYouSee) {
   const canvasRef = useRef(null);
   const [theta, setTheta] = useState(0);
   const lineThickness = 1
-  const [thetaIncrement, setThetaIncrement] = useState(0.00001);
+  const [thetaIncrement, setThetaIncrement] = useState(screenSizeVariables.thetaInc);
   const [graphColor, setGraphColor] = useState('#ffffff');
   const [colorIndex, setColorIndex] = useState(0);
   const [rainbowMode, setRainbowMode] = useState(false)
   const [colorCount, setColorCount] = useState(0)
   const [canvasBackground, setCanvasBackground]= useState(true)
+  const [firstLoad, setFirstLoad] = useState(true)
+
   function handleIncrementChange (newIncrement: number) {
     setThetaIncrement(newIncrement);
   }
   const [xModification, setXModification] = useState(1.2)
 
-
-
+  // SCREEN WIDTH
+  const [canvasWidth, setCanvasWidth] = useState(window.innerWidth)
+  function handleResize () { 
+    setCanvasWidth(window.innerWidth)
+  }
   useEffect(() => {
-    const canvas = canvasRef.current;
+    let canvas = canvasRef.current;
+    let animationFrameId: number;
+
+    // MANIPULATE CANVAS WIDTH
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('orientationchange', handleResize)
+    if (canvasWidth !== window.innerWidth) {
+      //@ts-expect-error canvas will be defined
+      canvas.width = getAdjustedCanvasWidth(canvasWidth)
+    }
+    if(firstLoad == true ) { 
+      //@ts-expect-error canvas will be defined
+      canvas.width =getAdjustedCanvasWidth(canvasWidth)
+      setFirstLoad(false)
+    }
+    canvas=canvasRef.current
     //@ts-expect-error canvas will be defined
     const ctx = canvas.getContext('2d');
     //@ts-expect-error canvas will be defined
     const centerX = canvas.width / 2;
     //@ts-expect-error canvas will be defined
-      const centerY = canvas.height / 2;
-    let animationFrameId: number;
-
+    const centerY = canvas.height / 2;
     function drawNextFrame() {
       const realPart = xModification* Math.cos(theta) + Math.cos(Math.PI * theta);
       const imagPart = 1.8* Math.sin(theta) 
@@ -66,8 +84,9 @@ export default function GraphWhatDoYouSee({ graphTitle }: GraphWhatDoYouSee) {
     
     return () => {
       cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', handleResize)
     };
-  }, [colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor, xModification]);
+  }, [firstLoad, canvasWidth, colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor, xModification]);
 
   function resetColourToWhite () {
     setGraphColor('#ffffff')
@@ -113,6 +132,7 @@ export default function GraphWhatDoYouSee({ graphTitle }: GraphWhatDoYouSee) {
                       <canvas
                         ref={canvasRef}
                         className="graph-canvas"
+                        id="mycanvas"
                         width={500}
                         height={500}
                         style={{

@@ -6,9 +6,7 @@ text-align: center;
 align-items: center; /* centers elements vertically in 3 column layout*/
 padding: 2rem;;
 background-color: rgb(35, 35, 35);
-min-width: 700px;
-box-sizing: border-box
-
+box-sizing: border-box;
 }
 
 .header-grid-item {

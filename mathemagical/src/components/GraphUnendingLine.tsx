@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './graph.css';
 import { coloursArray } from './rainbowhelper';
-
+import { screenSizeVariables,getAdjustedCanvasWidth } from './screensizescalars';
 type GraphUnendingLineProps = {
   graphTitle: string;
 };
@@ -10,20 +10,43 @@ export default function GraphUnendingLine({ graphTitle }: GraphUnendingLineProps
   const canvasRef = useRef(null);
   const [theta, setTheta] = useState(0);
   const lineThickness = 1
-  const [thetaIncrement, setThetaIncrement] = useState(0.00001);
+  const [thetaIncrement, setThetaIncrement] = useState(screenSizeVariables.thetaInc);
   const [graphColor, setGraphColor] = useState('#ffffff');
   const [colorIndex, setColorIndex] = useState(0);
   const [rainbowMode, setRainbowMode] = useState(false)
   const [colorCount, setColorCount] = useState(0)
   const [canvasBackground, setCanvasBackground]= useState(true)
+  const [firstLoad, setFirstLoad] = useState(true)
   function handleIncrementChange (newIncrement: number) {
     setThetaIncrement(newIncrement);
+  }
+  // SCREEN WIDTH
+  const [canvasWidth, setCanvasWidth] = useState(window.innerWidth)
+  function handleResize () { 
+    setCanvasWidth(window.innerWidth)
   }
 
 
 
+  
   useEffect(() => {
     const canvas = canvasRef.current;
+
+    // MANIPULATE CANVAS WIDTH
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('orientationchange', handleResize)
+    if (canvasWidth !== window.innerWidth) {
+      //@ts-expect-error canvas will be defined
+      canvas.width = getAdjustedCanvasWidth(canvasWidth)
+    }
+    if(firstLoad == true ) { 
+      //@ts-expect-error canvas will be defined
+      canvas.width =getAdjustedCanvasWidth(canvasWidth)
+      setFirstLoad(false)
+    }
+
+
+
     //@ts-expect-error canvas will be defined
     const ctx = canvas.getContext('2d');
     //@ts-expect-error canvas will be defined
@@ -66,7 +89,7 @@ export default function GraphUnendingLine({ graphTitle }: GraphUnendingLineProps
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor]);
+  }, [firstLoad, canvasWidth, colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor]);
 
   function resetColourToWhite () {
     setGraphColor('#ffffff')
@@ -105,7 +128,7 @@ function handleColourChange (value: string) {
   return (
     <div className="graph-container-centering">
               <div className="graph-container-item">
-                <h2 className="graph-title codystar-regular">{graphTitle || "Graph name"}</h2>
+                <h2 className="graph-title codystar-regular">{graphTitle || "Graph name"}{canvasWidth}- {getAdjustedCanvasWidth(canvasWidth)}</h2>
                       <canvas
                         ref={canvasRef}
                         className="graph-canvas"

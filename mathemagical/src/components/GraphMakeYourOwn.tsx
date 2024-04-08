@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './graph.css';
 import { coloursArray } from './rainbowhelper';
+import { screenSizeVariables,getAdjustedCanvasWidth } from './screensizescalars';
 
 type GraphMakeYourOwnProps = {
   graphTitle: string;
@@ -10,15 +11,25 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
   const canvasRef = useRef(null);
   const [theta, setTheta] = useState(0);
   const lineThickness = 1
-  const [thetaIncrement, setThetaIncrement] = useState(0.0001);
+  const [thetaIncrement, setThetaIncrement] = useState(screenSizeVariables.thetaInc);
   const [graphColor, setGraphColor] = useState('#ffffff');
   const [colorIndex, setColorIndex] = useState(0);
   const [rainbowMode, setRainbowMode] = useState(true)
   const [colorCount, setColorCount] = useState(0)
   const [canvasBackground, setCanvasBackground]= useState(true)
+  const [firstLoad, setFirstLoad] = useState(true)
+
   // COORDINATES
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
+  // SCREEN WIDTH
+  const [canvasWidth, setCanvasWidth] = useState(window.innerWidth)
+  function handleResize () { 
+    setCanvasWidth(window.innerWidth)
+  }
+
+  
+    
 
   // SCALAR MODIFICATIONS _______________________________________________
   const [x1Mod, setX1Mod] = useState(1)
@@ -38,6 +49,19 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
   // DRAW THE CANVAS _______________________________________________________
   useEffect(() => {
     const canvas = canvasRef.current;
+
+
+    // MANIPULATE CANVAS WIDTH
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('orientationchange', handleResize)
+    if (canvasWidth !== window.innerWidth) {
+      canvas.width = getAdjustedCanvasWidth(canvasWidth)
+    }
+    if(firstLoad == true ) { 
+      canvas.width =getAdjustedCanvasWidth(canvasWidth)
+      setFirstLoad(false)
+    }
+
     //@ts-expect-error canvas will be defined
     const ctx = canvas.getContext('2d');
     //@ts-expect-error canvas will be defined
@@ -52,7 +76,6 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
       const imagPart = y1Mod * (Math.sin(theta)) + y2Mod * (Math.sin(Math.PI*theta)) + y3Mod * (Math.cos(theta)) + y4Mod * (Math.cos(Math.PI*theta)) + y5Mod * (Math.tan(theta)) + y6Mod * (Math.tan(Math.PI*theta)) 
       setX(centerX + realPart * 80)
       setY(centerY + imagPart * 80)
-      console.log(centerX)
       ctx.beginPath();
       ctx.arc(x, y, lineThickness, 0, 2 * Math.PI);
       
