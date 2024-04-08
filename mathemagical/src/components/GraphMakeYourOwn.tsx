@@ -55,9 +55,11 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
     window.addEventListener('resize', handleResize)
     window.addEventListener('orientationchange', handleResize)
     if (canvasWidth !== window.innerWidth) {
+      //@ts-expect-error canvas will be defined
       canvas.width = getAdjustedCanvasWidth(canvasWidth)
     }
     if(firstLoad == true ) { 
+      //@ts-expect-error canvas will be defined
       canvas.width =getAdjustedCanvasWidth(canvasWidth)
       setFirstLoad(false)
     }
@@ -105,7 +107,7 @@ export default function GraphMakeYourOwn({ graphTitle }: GraphMakeYourOwnProps) 
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [x, y, colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor, x1Mod, x2Mod, x3Mod,x4Mod,x5Mod,x6Mod, y1Mod, y2Mod, y3Mod, y4Mod, y5Mod,y6Mod]);
+  }, [canvasWidth, firstLoad, x, y, colorCount, colorIndex, rainbowMode, theta, thetaIncrement, graphColor, x1Mod, x2Mod, x3Mod,x4Mod,x5Mod,x6Mod, y1Mod, y2Mod, y3Mod, y4Mod, y5Mod,y6Mod]);
 
 
 
