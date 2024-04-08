@@ -29,13 +29,13 @@ export function getAdjustedCanvasWidth (canvasWidth: number) {
 export function getAdjustedXYScalar (canvasWidth: number) {
   let adjustedXYScalar: number
   if (canvasWidth >= 1400 ) {
-    adjustedXYScalar = canvasWidth/12
+    adjustedXYScalar = canvasWidth/18
   }
   else if (canvasWidth>=800) {
-    adjustedXYScalar = canvasWidth/8
+    adjustedXYScalar = canvasWidth/13
     }
     else {
-      adjustedXYScalar = canvasWidth/10
+      adjustedXYScalar = canvasWidth/15
     }
 
   return adjustedXYScalar
