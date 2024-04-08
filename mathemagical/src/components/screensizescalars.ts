@@ -17,8 +17,11 @@ export function getAdjustedCanvasWidth (canvasWidth: number) {
     if (canvasWidth >= 1400 ) {
       adjustedWidth = 0.35 * (canvasWidth -200)
     }
-    else {
-      adjustedWidth = 0.75* (canvasWidth)
+    else if (canvasWidth>=800) {
+      adjustedWidth = 0.65* (canvasWidth)
+      }
+      else {
+        adjustedWidth = 0.5* (canvasWidth)
       }
       return adjustedWidth
 }
