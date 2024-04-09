@@ -161,7 +161,8 @@ function handleColourChange (value: string) {
   return (
     <div className="graph-container-centering">
               <div className="graph-container-item">
-                <h2 className="graph-title codystar-regular">"The unending line" {screenWidth}- {getAdjustedCanvasWidth(screenWidth)}</h2>
+                {/* <p> {screenWidth}- {getAdjustedCanvasWidth(screenWidth)}</p> */}
+                <h2 className="graph-title codystar-regular">"The unending line"</h2>
                       <canvas
                         ref={canvasRef}
                         className="graph-canvas"
