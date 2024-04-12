@@ -47,7 +47,7 @@ export default function GraphTwo() {
   // ⭐ UNIQUE SETUP CODE NOT SHARED WITH OTHER GRAPHS
     // (1) SCALE FACTOR -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
       // ... STATE MANAGEMENT
-      const [xModification, setXModification] = useState(1.2)
+      const [xModification, setXModification] = useState(1.0)
 
 
 
@@ -171,9 +171,9 @@ export default function GraphTwo() {
           <div className="section-container-centering">
                   <div className="settings-container">
                     <h3 className="subsection-heading codystar-light">Scalar Modification 🧑‍🔬</h3>
-                      <button className="graph-btn-blue" onClick={() => handleXModification(0)}>0</button>
+                      {/* <button className="graph-btn-blue" onClick={() => handleXModification(0)}>0</button> */}
                       <button className="graph-btn-blue" onClick={() => handleXModification(0.5)}>0.5</button>
-                      <button className="graph-btn-blue" onClick={() => handleXModification(1)}>1</button>
+                      {/* <button className="graph-btn-blue" onClick={() => handleXModification(1)}>1</button> */}
                       <button className="graph-btn-blue" onClick={() => handleXModification(1.5)}>1.5</button>
                       <br></br>
                       <br></br>
@@ -213,7 +213,7 @@ export default function GraphTwo() {
                 <section className="section-container-centering">
                   <div className="equations-container">
                     <h3 className="subsection-heading codystar-light">Equations</h3>
-                    <p className="graph-equations">x = 1.2 cos(θ) + cos(πθ)</p>
+                    <p className="graph-equations">x = cos(θ) + cos(πθ)</p>
                     <p className="graph-equations">y = 1.8 sin(θ)</p>
                   </div>
                 </section>
