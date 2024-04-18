@@ -1,4 +1,5 @@
 # Mathemagical
+![MathemagicalShot3](https://github.com/jamesdiffeycoding/Mathemagical/assets/139918141/eb3893ff-09df-4924-8c85-d4d1f0fea9d3)
 
 ## Inspiration
 When we think of art, nature, or great design, we seldom think of maths. Even so, maths underlies a lot of basic geometric forms. With a little manipulation, simple equations can create visually captivating forms. 
