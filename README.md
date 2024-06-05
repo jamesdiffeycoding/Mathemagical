@@ -5,14 +5,14 @@
 When we think of art, nature, or great design, we seldom think of maths. Even so, maths underlies a lot of basic geometric forms. With a little manipulation, simple equations can create visually captivating forms. 
 
 ## What it does
-Mathemagical uses HTML's canvas feature along with React's state management and rendering system to dynamically display captivating equations. Two graphs I made are included, along with a third interactive resource thay you can use to reproduce the first two, or to create your own design.
+Mathemagical uses HTML's canvas feature along with React's state management and rendering system to dynamically display captivating equations. Two graphs I made are included, along with a third interactive resource that you can use to reproduce the first two, or to create your own design.
 
 The design is responsive to screen width..
 
 ## How I built it
 I built it using HTML's canvas element and React's component and state management systems. For the rainbow colours, I iterate the colour of the line through an array that loops through the colours of the rainbow. I used while loops to generate hard code that smoothly transitions through the colours of the rainbow.
 
-## Challenges we ran into
+## Challenges I ran into
 The first method I used for graph rendering was ineffective. I had tried to use the Array.map method to successively iterate and print all the points in an equation, however there was considerable delay after several hundred points had been rendered, because the program was effectively 're-loading' every single point on the curve, not just the next iteration.
 
 I came across HTML's canvas element which helped to avoid this problem, requesting only 'the next frame' for each equation on each refresh improved the performance of the application significantly.
